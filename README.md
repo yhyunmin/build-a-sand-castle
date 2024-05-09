@@ -15,8 +15,8 @@
 
 ### Prettier 설정
 
+> 파일명 `.prettierrc` or `.prettierrc.json`
 
-> 파일명 `.prettierrc` or `.prettierrc.json`  
 ```json
 
 {
@@ -34,8 +34,19 @@
 > 날짜 관련 라이브러리  
 > `components/_dayjs/`
 
-api의  createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같이 사용 가능.  
+api의 createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같이 사용 가능.
 
+  > tsconfig.json 에서 수정을 해줘야 import가 쉬워진다.
+```json
+
+  {
+  "compilerOptions": {
+    /* dayjs typescript */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  }
+}
+```
 
 
 
@@ -48,5 +59,7 @@ api의  createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 �
 
     dayjs.tz.setDefault('Asia/Seoul'); // 타임존을 변경할 때 사용. 변경된 객체는 .tz()로 이용
      => dayjs().tz().format() 과같이 사용
+
 ## 3.@tanstack router
+
 > 타입기반 라우터 라이브러리

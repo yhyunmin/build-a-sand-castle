@@ -1,0 +1,19 @@
+
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  & button {
+    background-color: #fff;
+    border: 1px solid #333;
+    padding: 4px 8px;
+    border-radius:  4px;
+    outline:none;
+    font-weight: 700;
+    cursor: pointer;
+    &:hover {
+      background-color: #ddd;
+      }
+    }
+  }
