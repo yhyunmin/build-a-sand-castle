@@ -28,3 +28,25 @@
 }
 
 ```
+
+## 2.Day.js
+
+> 날짜 관련 라이브러리  
+> `components/_dayjs/`
+
+api의  createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같이 사용 가능.  
+
+
+
+
+    dayjs.extend(relativeTime); // .from .to .fromNow .toNow 에 대한 상대 시간을 가져옴.
+
+    dayjs.locale("ko"); // timezone이 변경 되지 않음.
+
+    dayjs.extend(utc); // timezone 플러그인을 추가할 때 필요함 utc
+    dayjs.extend(timezone); // 타임존과 관련된 기능 
+
+    dayjs.tz.setDefault('Asia/Seoul'); // 타임존을 변경할 때 사용. 변경된 객체는 .tz()로 이용
+     => dayjs().tz().format() 과같이 사용
+## 3.@tanstack router
+> 타입기반 라우터 라이브러리
