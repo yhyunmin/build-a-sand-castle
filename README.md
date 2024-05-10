@@ -31,8 +31,8 @@
 
 ## 2.Day.js
 
-> 날짜 관련 라이브러리  
-> `components/_dayjs/`
+날짜 관련 라이브러리  
+`components/_dayjs/`
 
 api의 createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같이 사용 가능.
 
@@ -59,6 +59,16 @@ api의 createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같
 
     dayjs.tz.setDefault('Asia/Seoul'); // 타임존을 변경할 때 사용. 변경된 객체는 .tz()로 이용
      => dayjs().tz().format() 과같이 사용
+
+
+> 번외 : input number 가 쓰레기인 이유
+> 1. maxLength안됨
+> 2. max min 은 최대자리수가아닌 최대값임.
+> 3. 직접입력(타이핑)으로 string입력가능 (?)
+> 4. 기상천외한 숫자 입력가능 (음수, e , + , 소수점) 이를 막는 방법이 없음
+> 5. max min 으로 막아뒀대도, 우회할 수 있음
+> 6. 결론은  inputmode="numeric"과 pattern=[0-9]* 를 써라 
+
 
 ## 3.@tanstack router
 

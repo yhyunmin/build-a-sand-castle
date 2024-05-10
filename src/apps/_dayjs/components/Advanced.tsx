@@ -1,14 +1,15 @@
 import Calendar from './Calendar.tsx';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 
 const Advanced = () => {
-  const [date, setDate] = useState(dayjs());
+  const [date, setDate] = useState<dayjs.Dayjs>();
   const [firstDayOfWeek, setFirstDayOfWeek] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [emptyCell, setEmptyCell] = useState<Array<null>>([]);
   const [cell, setCell] = useState<Array<number>>([]);
-
+  const [yearInputValue, setYearInputValue] = useState('');
+  const [monthInputValue, setMonthInputValue] = useState('');
   const handleNextMonth = () => {
     setDate((prev) => dayjs(prev).add(1, 'M'));
   };
@@ -17,7 +18,17 @@ const Advanced = () => {
     setDate((prev) => dayjs(prev).subtract(1, 'M'));
   };
 
-  const handleSetCustomDate = (year, month) => {};
+  const onChangeYear = (e) => {
+    setYearInputValue(e.target.value);
+  };
+  const onChangeMonth = (e) => {
+    setMonthInputValue(e.target.value);
+  };
+  const handleSetCustomDate = (year, month) => {
+    if (year && month) {
+      setDate(dayjs(`${year}-${month}`));
+    }
+  };
 
   const handleVisible = () => {
     setIsVisible(!isVisible);
@@ -63,11 +74,31 @@ const Advanced = () => {
       <hr />
       {isVisible && (
         <>
+          <input
+            type="text"
+            pattern="[0-9]*"
+            inputMode="numeric"
+            maxLength={4}
+            id="year"
+            value={yearInputValue}
+            onChange={(e) => onChangeYear(e)}
+          />
           년
-          <input type="text" />
+          <input
+            type="text"
+            min={1}
+            max={12}
+            maxLength={2}
+            pattern="[0-9]*"
+            value={monthInputValue}
+            onChange={(e) => onChangeMonth(e)}
+          />
           월
-          <input type="text" />
-          <button>확인</button>
+          <button
+            onClick={() => handleSetCustomDate(yearInputValue, monthInputValue)}
+          >
+            확인
+          </button>
         </>
       )}
       <Calendar
