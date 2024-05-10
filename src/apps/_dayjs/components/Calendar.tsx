@@ -1,6 +1,10 @@
 import style from '../style/calendar.module.css';
 
-const Calendar = () => {
+type Props = {
+  emptyCell: null[];
+  cell: number[];
+};
+const Calendar = ({ emptyCell, cell }: Props) => {
   return (
     <>
       <h2>Calendar</h2>
@@ -23,36 +27,12 @@ const Calendar = () => {
             <div className={style.daysCol}>Sun</div>
           </div>
           <div className={style.dates}>
-            <div className={style.datesCol}>1</div>
-            <div className={style.datesCol}>2</div>
-            <div className={style.datesCol}>3</div>
-            <div className={style.datesCol}>4</div>
-            <div className={style.datesCol}>5</div>
-            <div className={style.datesCol}>6</div>
-            <div className={style.datesCol}>7</div>
-            <div className={style.datesCol}>9</div>
-            <div className={style.datesCol}>10</div>
-            <div className={style.datesCol}>11</div>
-            <div className={style.datesCol}>12</div>
-            <div className={style.datesCol}>13</div>
-            <div className={style.datesCol}>14</div>
-            <div className={style.datesCol}>15</div>
-            <div className={style.datesCol}>16</div>
-            <div className={style.datesCol}>17</div>
-            <div className={style.datesCol}>18</div>
-            <div className={style.datesCol}>19</div>
-            <div className={style.datesCol}>20</div>
-            <div className={style.datesCol}>21</div>
-            <div className={style.datesCol}>22</div>
-            <div className={style.datesCol}>23</div>
-            <div className={style.datesCol}>24</div>
-            <div className={style.datesCol}>25</div>
-            <div className={style.datesCol}>26</div>
-            <div className={style.datesCol}>27</div>
-            <div className={style.datesCol}>28</div>
-            <div className={style.datesCol}>29</div>
-            <div className={style.datesCol}>30</div>
-            <div className={style.datesCol}>31</div>
+            {emptyCell.map(() => {
+              return <div className={style.datesCol}>{''}</div>;
+            })}
+            {cell.map((v, _) => {
+              return <div className={style.datesCol}>{v}</div>;
+            })}
           </div>
         </div>
       </div>
