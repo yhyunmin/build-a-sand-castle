@@ -5,7 +5,7 @@ type Props = {
   month: string;
   emptyCell: null[];
   cell: number[];
-  handleSetCustomDate: (year: number, month: number) => void;
+  handleSetCustomDate: (year: string, month: string) => void;
   handlePrevMonth: (month: number) => void;
   handleNextMonth: (month: number) => void;
   handleVisible: () => void;
@@ -16,7 +16,6 @@ const Calendar = ({
   month,
   emptyCell,
   cell,
-  handleSetCustomDate,
   handleVisible,
   handlePrevMonth,
   handleNextMonth,
@@ -48,7 +47,7 @@ const Calendar = ({
             {emptyCell.map(() => {
               return <div className={style.datesCol}>{''}</div>;
             })}
-            {cell.map((v, _) => {
+            {cell.map((v) => {
               return <div className={style.datesCol}>{v}</div>;
             })}
           </div>

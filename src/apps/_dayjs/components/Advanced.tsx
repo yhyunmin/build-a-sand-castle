@@ -1,5 +1,5 @@
 import Calendar from './Calendar.tsx';
-import { Fragment, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 
 const Advanced = () => {
@@ -18,13 +18,13 @@ const Advanced = () => {
     setDate((prev) => dayjs(prev).subtract(1, 'M'));
   };
 
-  const onChangeYear = (e) => {
+  const onChangeYear = (e: ChangeEvent<HTMLInputElement>) => {
     setYearInputValue(e.target.value);
   };
-  const onChangeMonth = (e) => {
+  const onChangeMonth = (e: ChangeEvent<HTMLInputElement>) => {
     setMonthInputValue(e.target.value);
   };
-  const handleSetCustomDate = (year, month) => {
+  const handleSetCustomDate = (year: string, month: string) => {
     if (year && month) {
       setDate(dayjs(`${year}-${month}`));
     }
