@@ -1,0 +1,48 @@
+
+.container {
+  border-radius: 12px;
+  border: 1px solid #fff;
+  width: fit-content;
+  padding: 20px;
+  }
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #fff;
+  }
+
+.btnGroup {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 10px;
+  }
+
+.body {
+  
+  }
+
+.days{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  }
+
+.daysCol{
+  padding: 4px 12px;
+  text-align: center;
+  margin: 10px;
+  font-weight: 900;
+  }
+.dates {
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  }
+
+.datesCol {
+  text-align: center;
+  font-weight: 300;
+  padding: 16px 0;
+  
+  }

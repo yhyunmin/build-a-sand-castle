@@ -2,6 +2,7 @@ import Basic from './components/Basic.tsx';
 import style from './style.module.css';
 import { useState } from 'react';
 import Apply from './components/Apply.tsx';
+import Advanced from './components/Advanced.tsx';
 const DayjsLayout = () => {
   const [page, setPage] = useState('basic');
   return (
@@ -14,7 +15,7 @@ const DayjsLayout = () => {
       </div>
       {page === 'basic' && <Basic />}
       {page === 'apply' && <Apply />}
-      {page === 'advanced' && <Basic />}
+      {page === 'advanced' && <Advanced />}
     </>
   );
 };
