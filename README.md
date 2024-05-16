@@ -74,21 +74,41 @@ api의 createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같
 
 > 타입기반 라우터 라이브러리
 
-### 파일기반 라우팅
-    1. flat router : 파일명에 따라 rotuePath가 정해짐. 경로를 쉽게 확인 할 수 있음.
-    2. 핵심 기본 원칙 : slug명으로짓는다 ex) about.tsx(/about).
-    3. 동적 페이지는 .(점)으로 구분 짓는다 ex) about.$postId.tsx(/about/$postId).
-    4. 예시 ) settings 페이지 내의 profile 탭을 본다면 
-    4.1 ) settings.tsx로 settings 라우팅, settings.profile.tsx 로 라우팅 구성
-    (기존 폴더 라우팅에선 settingds 폴더안에 profile.tsx로 라우팅을 구성함) 
-    5. 루트 라우트는 전체 트리의 최상위 경로. 다른 모든 경로들을 자식으로 포함함. 어떤 경로와 매칭되지 않아도 항상 렌더링되는 경로
-    6. 루트라우트는 모든 경로를 접근할 수 있음 (loader,components, search params 등 )
-    7. `createRootRoute()` 를 통해 생성,
+### static Routes
+   
+    1. flat router : 파일명에 따라 rotuePath가 정해짐. 경로를 쉽게 확인 할 수 있음.  
+    2. 핵심 기본 원칙 : slug명으로짓는다 ex) index.tsx(/about).  
+    3. 동적 페이지는 .(점)으로 구분 짓는다 ex) about.$postId.tsx(/about/$postId).  
+    4. 예시 ) settings 페이지 내의 profile 탭을 본다면   
+    4.1 ) settings.tsx로 settings 라우팅, settings.profile.tsx 로 라우팅 구성  
+    (기존 폴더 라우팅에선 settingds 폴더안에 profile.tsx로 라우팅을 구성함)   
+    5. 루트 라우트는 전체 트리의 최상위 경로. 다른 모든 경로들을 자식으로 포함함. 어떤 경로와 매칭되지 않아도 항상 렌더링되는 경로  
+    6. 루트라우트는 모든 경로를 접근할 수 있음 (loader,components, search params 등 )  
+    7. `createRootRoute()` 를 통해 생성,  
+    8. rootRoute 만 createRootRoute(), 다른 route 들은 createFileRoute()() 사용
 
-### routeTree 생성
-    1. `npm i @tanstack/router-cli` 설치 후 tsr generate 명령어를 통해, 라우트를 자동 생성 할 수 있음.
+### index Routes
+
+    1. 인덱스 라우트는 하위경로와 일치 하지않고, 상위경로와 정확하게 일치하는 라우트를 대상으로 함.
+    2. routes/about/index.tsx 참고
+    3. about.tsx가아닌 , about 폴더에 index.tsx로 작업 가능
+
+### Dynamic Route Segments
+
+    1. $ 네이밍을 통해서 동적 라우트를 설정 할 수 있음.
+    2. 세그먼츠는 createFileRoute 의 useParam으로 가져올 수 있음.
+    3. const { postId } = Route.useParams();
+    4. 더많은 경로를 원하면 post.$.tsx 와 같이 만듬
+### routeTree 생성  
+    1. `$npm i @tanstack/router-cli` 설치 후 $tsr generate 명령어를 통해, 라우트를 자동 생성 할 수 있음.
     2. src/routes폴더만들기
-    3. `__route.tsx`만들기
+    3. `__root.tsx`만들기
+
+### routeTree.gen.ts 자동 생성
+    1. $tsr watch
+
+### 
+
 
 
 ## 4.framer motion
