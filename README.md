@@ -107,7 +107,11 @@ api의 createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같
 ### routeTree.gen.ts 자동 생성
     1. $tsr watch
 
-### 
+
+### pathless routes
+    1. pathless라우트는, 밀줄이 앞에 붙는 라우트 *_
+    2. 레이아웃 컴포넌트로써 
+    3. /layout-a 
 
 
 
