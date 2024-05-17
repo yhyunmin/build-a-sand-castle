@@ -7,7 +7,7 @@ export const Route = createFileRoute('/_wathceslayout')({
 function LayoutComponent() {
   return (
     <div>
-      <h1>My Layout Component</h1>
+      <h1>My Watches Layout Component</h1>
       <hr />
       <Outlet />
     </div>

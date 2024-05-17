@@ -110,8 +110,9 @@ api의 createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같
 
 ### pathless routes
     1. pathless라우트는, 밀줄이 앞에 붙는 라우트 *_
-    2. 레이아웃 컴포넌트로써 
-    3. /layout-a 
+    2. 직접 라우트에 관여 없이, 컴포넌트를 만들 수 있다. wrapper component
+    3. `_watcheslayout.watches.tsx`로 제작한다면 엔드포인트는 /watches
+    4. _watcheslayout.tsx의 렌더링도 포함됨
 
 
 
@@ -120,3 +121,4 @@ api의 createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같
 >
 
 ## 5.Tailwind
+n 

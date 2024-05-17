@@ -12,11 +12,13 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as PostsImport } from './routes/posts'
+import { Route as WrapperImport } from './routes/_wrapper'
 import { Route as WathceslayoutImport } from './routes/_wathceslayout'
 import { Route as LayoutImport } from './routes/_layout'
 import { Route as IndexImport } from './routes/index'
 import { Route as AboutIndexImport } from './routes/about/index'
 import { Route as PostsPostIdImport } from './routes/posts.$postId'
+import { Route as WrapperRolexImport } from './routes/_wrapper.rolex'
 import { Route as WatcheslayoutWatchesImport } from './routes/_watcheslayout.watches'
 import { Route as LayoutDogsImport } from './routes/_layout.dogs'
 import { Route as AboutSettingsIndexImport } from './routes/about/settings/index'
@@ -25,6 +27,11 @@ import { Route as AboutSettingsIndexImport } from './routes/about/settings/index
 
 const PostsRoute = PostsImport.update({
   path: '/posts',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const WrapperRoute = WrapperImport.update({
+  id: '/_wrapper',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -51,6 +58,11 @@ const AboutIndexRoute = AboutIndexImport.update({
 const PostsPostIdRoute = PostsPostIdImport.update({
   path: '/$postId',
   getParentRoute: () => PostsRoute,
+} as any)
+
+const WrapperRolexRoute = WrapperRolexImport.update({
+  path: '/rolex',
+  getParentRoute: () => WrapperRoute,
 } as any)
 
 const WatcheslayoutWatchesRoute = WatcheslayoutWatchesImport.update({
@@ -93,6 +105,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WathceslayoutImport
       parentRoute: typeof rootRoute
     }
+    '/_wrapper': {
+      id: '/_wrapper'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof WrapperImport
+      parentRoute: typeof rootRoute
+    }
     '/posts': {
       id: '/posts'
       path: '/posts'
@@ -113,6 +132,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/watches'
       preLoaderRoute: typeof WatcheslayoutWatchesImport
       parentRoute: typeof rootRoute
+    }
+    '/_wrapper/rolex': {
+      id: '/_wrapper/rolex'
+      path: '/rolex'
+      fullPath: '/rolex'
+      preLoaderRoute: typeof WrapperRolexImport
+      parentRoute: typeof WrapperImport
     }
     '/posts/$postId': {
       id: '/posts/$postId'
@@ -143,6 +169,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
   LayoutRoute: LayoutRoute.addChildren({ LayoutDogsRoute }),
+  WrapperRoute: WrapperRoute.addChildren({ WrapperRolexRoute }),
   PostsRoute: PostsRoute.addChildren({ PostsPostIdRoute }),
   WatcheslayoutWatchesRoute,
   AboutIndexRoute,
