@@ -10,157 +10,183 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as PostsImport } from './routes/posts'
-import { Route as WrapperImport } from './routes/_wrapper'
-import { Route as WathceslayoutImport } from './routes/_wathceslayout'
-import { Route as LayoutImport } from './routes/_layout'
-import { Route as IndexImport } from './routes/index'
-import { Route as AboutIndexImport } from './routes/about/index'
-import { Route as PostsPostIdImport } from './routes/posts.$postId'
-import { Route as WrapperRolexImport } from './routes/_wrapper.rolex'
-import { Route as WatcheslayoutWatchesImport } from './routes/_watcheslayout.watches'
-import { Route as LayoutDogsImport } from './routes/_layout.dogs'
-import { Route as AboutSettingsIndexImport } from './routes/about/settings/index'
+import { Route as rootRoute } from './routes/__root';
+import { Route as PostsImport } from './routes/posts';
+import { Route as WrapperImport } from './routes/_wrapper';
+import { Route as WathceslayoutImport } from './routes/_wathceslayout';
+import { Route as LayoutImport } from './routes/_layout';
+import { Route as IndexImport } from './routes/index';
+import { Route as PostsIndexImport } from './routes/posts.index';
+import { Route as AboutIndexImport } from './routes/about/index';
+import { Route as PostsDeepImport } from './routes/posts_.deep';
+import { Route as PostsPostIdImport } from './routes/posts.$postId';
+import { Route as WrapperRolexImport } from './routes/_wrapper.rolex';
+import { Route as WatcheslayoutWatchesImport } from './routes/_watcheslayout.watches';
+import { Route as LayoutDogsImport } from './routes/_layout.dogs';
+import { Route as AboutSettingsIndexImport } from './routes/about/settings/index';
 
 // Create/Update Routes
 
 const PostsRoute = PostsImport.update({
   path: '/posts',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const WrapperRoute = WrapperImport.update({
   id: '/_wrapper',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const WathceslayoutRoute = WathceslayoutImport.update({
   id: '/_wathceslayout',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const LayoutRoute = LayoutImport.update({
   id: '/_layout',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const IndexRoute = IndexImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
+
+const PostsIndexRoute = PostsIndexImport.update({
+  path: '/',
+  getParentRoute: () => PostsRoute,
+} as any);
 
 const AboutIndexRoute = AboutIndexImport.update({
   path: '/about/',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
+
+const PostsDeepRoute = PostsDeepImport.update({
+  path: '/posts/deep',
+  getParentRoute: () => rootRoute,
+} as any);
 
 const PostsPostIdRoute = PostsPostIdImport.update({
   path: '/$postId',
   getParentRoute: () => PostsRoute,
-} as any)
+} as any);
 
 const WrapperRolexRoute = WrapperRolexImport.update({
   path: '/rolex',
   getParentRoute: () => WrapperRoute,
-} as any)
+} as any);
 
 const WatcheslayoutWatchesRoute = WatcheslayoutWatchesImport.update({
   path: '/watches',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const LayoutDogsRoute = LayoutDogsImport.update({
   path: '/dogs',
   getParentRoute: () => LayoutRoute,
-} as any)
+} as any);
 
 const AboutSettingsIndexRoute = AboutSettingsIndexImport.update({
   path: '/about/settings/',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/';
+      path: '/';
+      fullPath: '/';
+      preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
     '/_layout': {
-      id: '/_layout'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof LayoutImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/_layout';
+      path: '';
+      fullPath: '';
+      preLoaderRoute: typeof LayoutImport;
+      parentRoute: typeof rootRoute;
+    };
     '/_wathceslayout': {
-      id: '/_wathceslayout'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof WathceslayoutImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/_wathceslayout';
+      path: '';
+      fullPath: '';
+      preLoaderRoute: typeof WathceslayoutImport;
+      parentRoute: typeof rootRoute;
+    };
     '/_wrapper': {
-      id: '/_wrapper'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof WrapperImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/_wrapper';
+      path: '';
+      fullPath: '';
+      preLoaderRoute: typeof WrapperImport;
+      parentRoute: typeof rootRoute;
+    };
     '/posts': {
-      id: '/posts'
-      path: '/posts'
-      fullPath: '/posts'
-      preLoaderRoute: typeof PostsImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/posts';
+      path: '/posts';
+      fullPath: '/posts';
+      preLoaderRoute: typeof PostsImport;
+      parentRoute: typeof rootRoute;
+    };
     '/_layout/dogs': {
-      id: '/_layout/dogs'
-      path: '/dogs'
-      fullPath: '/dogs'
-      preLoaderRoute: typeof LayoutDogsImport
-      parentRoute: typeof LayoutImport
-    }
+      id: '/_layout/dogs';
+      path: '/dogs';
+      fullPath: '/dogs';
+      preLoaderRoute: typeof LayoutDogsImport;
+      parentRoute: typeof LayoutImport;
+    };
     '/_watcheslayout/watches': {
-      id: '/_watcheslayout/watches'
-      path: '/watches'
-      fullPath: '/watches'
-      preLoaderRoute: typeof WatcheslayoutWatchesImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/_watcheslayout/watches';
+      path: '/watches';
+      fullPath: '/watches';
+      preLoaderRoute: typeof WatcheslayoutWatchesImport;
+      parentRoute: typeof rootRoute;
+    };
     '/_wrapper/rolex': {
-      id: '/_wrapper/rolex'
-      path: '/rolex'
-      fullPath: '/rolex'
-      preLoaderRoute: typeof WrapperRolexImport
-      parentRoute: typeof WrapperImport
-    }
+      id: '/_wrapper/rolex';
+      path: '/rolex';
+      fullPath: '/rolex';
+      preLoaderRoute: typeof WrapperRolexImport;
+      parentRoute: typeof WrapperImport;
+    };
     '/posts/$postId': {
-      id: '/posts/$postId'
-      path: '/$postId'
-      fullPath: '/posts/$postId'
-      preLoaderRoute: typeof PostsPostIdImport
-      parentRoute: typeof PostsImport
-    }
+      id: '/posts/$postId';
+      path: '/$postId';
+      fullPath: '/posts/$postId';
+      preLoaderRoute: typeof PostsPostIdImport;
+      parentRoute: typeof PostsImport;
+    };
+    '/posts/deep': {
+      id: '/posts/deep';
+      path: '/posts/deep';
+      fullPath: '/posts/deep';
+      preLoaderRoute: typeof PostsDeepImport;
+      parentRoute: typeof rootRoute;
+    };
     '/about/': {
-      id: '/about/'
-      path: '/about/'
-      fullPath: '/about/'
-      preLoaderRoute: typeof AboutIndexImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/about/';
+      path: '/about/';
+      fullPath: '/about/';
+      preLoaderRoute: typeof AboutIndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    '/posts/': {
+      id: '/posts/';
+      path: '/';
+      fullPath: '/posts/';
+      preLoaderRoute: typeof PostsIndexImport;
+      parentRoute: typeof PostsImport;
+    };
     '/about/settings/': {
-      id: '/about/settings/'
-      path: '/about/settings/'
-      fullPath: '/about/settings/'
-      preLoaderRoute: typeof AboutSettingsIndexImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/about/settings/';
+      path: '/about/settings/';
+      fullPath: '/about/settings/';
+      preLoaderRoute: typeof AboutSettingsIndexImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
@@ -170,10 +196,11 @@ export const routeTree = rootRoute.addChildren({
   IndexRoute,
   LayoutRoute: LayoutRoute.addChildren({ LayoutDogsRoute }),
   WrapperRoute: WrapperRoute.addChildren({ WrapperRolexRoute }),
-  PostsRoute: PostsRoute.addChildren({ PostsPostIdRoute }),
+  PostsRoute: PostsRoute.addChildren({ PostsPostIdRoute, PostsIndexRoute }),
   WatcheslayoutWatchesRoute,
+  PostsDeepRoute,
   AboutIndexRoute,
   AboutSettingsIndexRoute,
-})
+});
 
 /* prettier-ignore-end */

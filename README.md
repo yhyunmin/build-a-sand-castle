@@ -114,7 +114,13 @@ api의 createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같
     3. `_watcheslayout.watches.tsx`로 제작한다면 엔드포인트는 /watches
     4. _watcheslayout.tsx의 렌더링도 포함됨
 
+### non-nested Routes 
+    1. 접미사로 _ 로 붙여 사용할 수 있다. 
+    2. 말 그대로 중첩되지 않는 라우트. 
+    3. 엔드포인트는 따라가고싶지만, 렌더링을 중첩하기 싫을 때 사용
+    4. (posts/deep 의 경로를 사용하지만, posts의 레이아웃을 비사용 하고 싶을 때)
 
+    
 
 ## 4.framer motion
 
