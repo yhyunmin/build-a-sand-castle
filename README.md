@@ -77,7 +77,7 @@ api의 createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같
 ### static Routes
    
     1. flat router : 파일명에 따라 rotuePath가 정해짐. 경로를 쉽게 확인 할 수 있음.  
-    2. 핵심 기본 원칙 : slug명으로짓는다 ex) index.tsx(/about).  
+    2. 핵심 기본 원칙 : slug명으로짓는다 ex) index.lazy.tsx(/about).  
     3. 동적 페이지는 .(점)으로 구분 짓는다 ex) about.$postId.tsx(/about/$postId).  
     4. 예시 ) settings 페이지 내의 profile 탭을 본다면   
     4.1 ) settings.tsx로 settings 라우팅, settings.profile.tsx 로 라우팅 구성  
@@ -90,7 +90,7 @@ api의 createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같
 ### index Routes
 
     1. 인덱스 라우트는 하위경로와 일치 하지않고, 상위경로와 정확하게 일치하는 라우트를 대상으로 함.
-    2. routes/about/index.tsx 참고
+    2. routes/about/index.lazy.tsx 참고
     3. about.tsx가아닌 , about 폴더에 index.tsx로 작업 가능
 
 ### Dynamic Route Segments
@@ -120,8 +120,16 @@ api의 createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같
     3. 엔드포인트는 따라가고싶지만, 렌더링을 중첩하기 싫을 때 사용
     4. (posts/deep 의 경로를 사용하지만, posts의 레이아웃을 비사용 하고 싶을 때)
 
-    
+### lazy
+    1. 파일뒤에 .lazy.tsx 붙이면, 해당 엔드포인트로 접근시 데이터를 가져온다.
+    2. 최적화에 좋음
+    3. 파일명은 ***.lazy.tsx / 불러오는 Route 메소드는 createLazyFileRoute() 나머지는 같음
 
+### navigation
+    1. <Link> :  기존 react 와같음.
+    2. useNavigate : Link 태그말고 훅이용해서 이동
+    3. <Navigate> : 렌더링 하지않고 이동
+    4. Router.navigate() : 탠스택 라우터의 강력한 기능 중하나 useNavigate()와 비슷하나, but router 어디든 이동 할 수 있음
 ## 4.framer motion
 
 >
