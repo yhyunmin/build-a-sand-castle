@@ -131,10 +131,18 @@ api의 createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같
     3. <Navigate> : 렌더링 하지않고 이동
     4. Router.navigate() : 탠스택 라우터의 강력한 기능 중하나 useNavigate()와 비슷하나, but router 어디든 이동 할 수 있음
 
-## 4.msw 
+## 4.ag-grid
 
 ## 5.tailwind
 
 ## 6.recharts 
 
 ## 7.framer motion
+
+## 8.msw
+> Mock Service Worker
+
+    1. `npx msw init ./src --save` (mockServiceWorker.js 생성을 위함)
+    2. Handlers 생성 (request를 처리하는 함수, 호출된 URL를 확인, 모의 응답을 반환)  
+    3. 공식문서 JSON response 코드 부분 복붙.
+    4. mocks/handler.ts 만들기 
