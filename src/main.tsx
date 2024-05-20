@@ -40,19 +40,26 @@
 //     </StrictMode>,
 //   );
 // }
-import  ReactDOM  from 'react-dom/client';
-import {RouterProvider,createRouter} from '@tanstack/react-router';
+import ReactDOM from 'react-dom/client';
+import {
+  RouterProvider,
+  createRouter,
+  createRootRoute,
+} from '@tanstack/react-router';
 
 // tsr generate 가 라우트 트리를 자동 생성
-import {routeTree} from './routeTree.gen.ts';
+import { routeTree } from './routeTree.gen.ts';
+import NavigationHeader from './NavigationHeader.tsx';
 
-const router = createRouter({routeTree})
+export const rootRoute = createRootRoute({
+  component: NavigationHeader,
+});
+
+const router = createRouter({ routeTree });
 
 const rootElement = document.getElementById('root')!;
 
-if(!rootElement.innerHTML) {
+if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
-  root.render(
-    <RouterProvider router={router}></RouterProvider>
-  )
+  root.render(<RouterProvider router={router} />);
 }

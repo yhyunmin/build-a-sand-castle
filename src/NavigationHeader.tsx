@@ -5,8 +5,8 @@ const NavigationHeader = () => {
     <>
       <div>
         <div>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
+          <Link to="/dayjs">Dayjs</Link>
+          <Link to="/aggrid">AG-Grid</Link>
         </div>
       </div>
       <hr />

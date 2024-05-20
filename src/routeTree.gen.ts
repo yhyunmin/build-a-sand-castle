@@ -14,6 +14,8 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as SettingsImport } from './routes/settings'
+import { Route as DayjsImport } from './routes/dayjs'
+import { Route as AgGridImport } from './routes/ag-grid'
 import { Route as WrapperImport } from './routes/_wrapper'
 import { Route as WathceslayoutImport } from './routes/_wathceslayout'
 import { Route as LayoutImport } from './routes/_layout'
@@ -29,18 +31,22 @@ import { Route as AboutSettingsIndexImport } from './routes/about/settings/index
 
 // Create Virtual Routes
 
-const PostsLazyImport = createFileRoute('/posts')()
 const AboutIndexLazyImport = createFileRoute('/about/')()
 
 // Create/Update Routes
 
-const PostsLazyRoute = PostsLazyImport.update({
-  path: '/posts',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/posts.lazy').then((d) => d.Route))
-
 const SettingsRoute = SettingsImport.update({
   path: '/settings',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DayjsRoute = DayjsImport.update({
+  path: '/dayjs',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AgGridRoute = AgGridImport.update({
+  path: '/ag-grid',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -70,8 +76,8 @@ const AboutIndexLazyRoute = AboutIndexLazyImport.update({
 } as any).lazy(() => import('./routes/about/index.lazy').then((d) => d.Route))
 
 const PostsIndexRoute = PostsIndexImport.update({
-  path: '/',
-  getParentRoute: () => PostsLazyRoute,
+  path: '/posts/',
+  getParentRoute: () => rootRoute,
 } as any)
 
 const PostsDeepRoute = PostsDeepImport.update({
@@ -80,8 +86,8 @@ const PostsDeepRoute = PostsDeepImport.update({
 } as any)
 
 const PostsPostIdRoute = PostsPostIdImport.update({
-  path: '/$postId',
-  getParentRoute: () => PostsLazyRoute,
+  path: '/posts/$postId',
+  getParentRoute: () => rootRoute,
 } as any)
 
 const WrapperRolexRoute = WrapperRolexImport.update({
@@ -141,18 +147,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WrapperImport
       parentRoute: typeof rootRoute
     }
+    '/ag-grid': {
+      id: '/ag-grid'
+      path: '/ag-grid'
+      fullPath: '/ag-grid'
+      preLoaderRoute: typeof AgGridImport
+      parentRoute: typeof rootRoute
+    }
+    '/dayjs': {
+      id: '/dayjs'
+      path: '/dayjs'
+      fullPath: '/dayjs'
+      preLoaderRoute: typeof DayjsImport
+      parentRoute: typeof rootRoute
+    }
     '/settings': {
       id: '/settings'
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof SettingsImport
-      parentRoute: typeof rootRoute
-    }
-    '/posts': {
-      id: '/posts'
-      path: '/posts'
-      fullPath: '/posts'
-      preLoaderRoute: typeof PostsLazyImport
       parentRoute: typeof rootRoute
     }
     '/_layout/dogs': {
@@ -178,10 +191,10 @@ declare module '@tanstack/react-router' {
     }
     '/posts/$postId': {
       id: '/posts/$postId'
-      path: '/$postId'
+      path: '/posts/$postId'
       fullPath: '/posts/$postId'
       preLoaderRoute: typeof PostsPostIdImport
-      parentRoute: typeof PostsLazyImport
+      parentRoute: typeof rootRoute
     }
     '/posts/deep': {
       id: '/posts/deep'
@@ -192,10 +205,10 @@ declare module '@tanstack/react-router' {
     }
     '/posts/': {
       id: '/posts/'
-      path: '/'
+      path: '/posts/'
       fullPath: '/posts/'
       preLoaderRoute: typeof PostsIndexImport
-      parentRoute: typeof PostsLazyImport
+      parentRoute: typeof rootRoute
     }
     '/about/': {
       id: '/about/'
@@ -227,13 +240,13 @@ export const routeTree = rootRoute.addChildren({
   IndexRoute,
   LayoutRoute: LayoutRoute.addChildren({ LayoutDogsRoute }),
   WrapperRoute: WrapperRoute.addChildren({ WrapperRolexRoute }),
+  AgGridRoute,
+  DayjsRoute,
   SettingsRoute,
-  PostsLazyRoute: PostsLazyRoute.addChildren({
-    PostsPostIdRoute,
-    PostsIndexRoute,
-  }),
   WatcheslayoutWatchesRoute,
+  PostsPostIdRoute,
   PostsDeepRoute,
+  PostsIndexRoute,
   AboutIndexLazyRoute,
   AboutSettingsIndexRoute,
   BlogBlogIdIndexRoute,

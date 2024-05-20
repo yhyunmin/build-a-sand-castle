@@ -12,6 +12,7 @@ function HomeComponent() {
     <main>
       <h2>Welcome</h2>
       <Link to={'/about'}>Go to About</Link>
+      <Link to={'/posts'}>Go to Post</Link>
       <Link style={{ marginLeft: '10px' }} to={'/settings'}>
         Go to Settings
       </Link>
