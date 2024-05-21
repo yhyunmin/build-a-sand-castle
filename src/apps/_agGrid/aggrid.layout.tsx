@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import style from '../_dayjs/style.module.css';
 import Basic from './components/Basic.tsx';
+import Apply from './components/Apply.tsx';
+import Advanced from './components/Advanced.tsx';
 
 const AggridLayout = () => {
   const [page, setPage] = useState('basic');
@@ -13,8 +15,8 @@ const AggridLayout = () => {
         <button onClick={() => setPage('advanced')}>ADVANCED</button>
       </div>
       {page === 'basic' && <Basic />}
-      {/*{page === 'apply' && <Apply />}*/}
-      {/*{page === 'advanced' && <Advanced />}*/}
+      {page === 'apply' && <Apply />}
+      {page === 'advanced' && <Advanced />}
     </>
   );
 };
