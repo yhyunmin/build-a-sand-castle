@@ -134,8 +134,10 @@ api의 createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같
 ## 4.ag-grid
 > 테이블 라이브러리
 
-    1.  defaultColDef, sideBar , statusBar 는 useState 나 useMemo를 사용하기.(최적화)
+    1. defaultColDef, sideBar , statusBar 는 useState 나 useMemo를 사용하기.(최적화)
     2. Row Date 업데이트를 위해 getRowId 콜백 구현을 이용할 것. 
+    3. 심플 타입값은 훅 X 
+    4. 함수들은 useCallback을 이용할 것
 
 ## 5.tailwind
 
