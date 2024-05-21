@@ -6,20 +6,23 @@ import { ColDef } from 'ag-grid-community'; // Optional Theme applied to the gri
 
 const Advanced = () => {
   const [columnDefs] = useState<ColDef[]>([
-    { field: 'mission', headerName: '미션' },
+    { field: 'mission', headerName: '미션', checkboxSelection: true },
     {
       field: 'company',
       // 커스텀 셀 렌더링
       cellRenderer: CompanyLogoRenderer,
     },
     { field: 'location' },
-    { field: 'date' },
+    {
+      field: 'date',
+      valueFormatter: (params) => new Date(params.value).toLocaleDateString(),
+    },
     {
       field: 'price',
       // Cell Value 포맷
       valueFormatter: (params) => params.value.toLocaleString() + '원',
     },
-    { field: 'successful' },
+    { field: 'successful', cellRenderer: SuccessfulRenderer },
     { field: 'rocket' },
   ]);
   const [rowData, setRowData] = useState([]);
@@ -82,6 +85,27 @@ const Advanced = () => {
     );
   }
 
+  function SuccessfulRenderer({ value }) {
+    return (
+      <span>
+        {value ? (
+          <img
+            src="https://www.ag-grid.com/example-assets/icons/tick-in-circle.png"
+            alt=""
+          />
+        ) : (
+          <img
+            src="https://www.ag-grid.com/example-assets/icons/cross-in-circle.png"
+            alt=""
+          />
+        )}
+      </span>
+    );
+  }
+
+  const onSelectionChanged = (e) => {
+    console.log(e);
+  };
   return (
     <>
       <div className={'ag-theme-quartz-dark'} style={{ height: '500px' }}>
@@ -90,6 +114,8 @@ const Advanced = () => {
           rowData={rowData}
           defaultColDef={defaultColDef}
           onCellValueChanged={(e) => onCellValueChanged(e)}
+          rowSelection="multiple"
+          onSelectionChanged={onSelectionChanged}
         />
       </div>
     </>
