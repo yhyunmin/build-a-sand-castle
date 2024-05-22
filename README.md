@@ -147,6 +147,8 @@ api의 createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같
     1. css조절로 global 스타일이 가능하다. 
     2. practice / style.css 참고
 
+`tanstack-query => Auth.js`
+
 ## 6.tailwind
 
 ## 7.recharts 
