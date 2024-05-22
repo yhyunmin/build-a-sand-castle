@@ -134,18 +134,26 @@ api의 createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같
 ## 4.ag-grid
 > 테이블 라이브러리
 
+### 기본 사용
     1. defaultColDef, sideBar , statusBar 는 useState 나 useMemo를 사용하기.(최적화)
     2. Row Date 업데이트를 위해 getRowId 콜백 구현을 이용할 것. 
     3. 심플 타입값은 훅 X 
     4. 함수들은 useCallback을 이용할 것
+    5. 이벤트 리스너 함수들은,아무렇게나 해도되지만, best performance 로는 memo()를 사용 할 것
+    6. aggrid debug를 사용해 렌더를 확인할수 있다.
+    7. 개별 설정은 row styles, cell styles, custom renderers 를 이용 
+    8. `https://www.ag-grid.com/react-data-grid/global-style-customisation-colours/` 참고
+### 스타일링
+    1. css조절로 global 스타일이 가능하다. 
+    2. practice / style.css 참고
 
-## 5.tailwind
+## 6.tailwind
 
-## 6.recharts 
+## 7.recharts 
 
-## 7.framer motion
+## 8.framer motion
 
-## 8.msw
+## 9.msw
 > Mock Service Worker
 
     1. `npx msw init ./src --save` (mockServiceWorker.js 생성을 위함)

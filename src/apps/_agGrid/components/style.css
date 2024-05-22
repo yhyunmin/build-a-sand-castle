@@ -15,3 +15,32 @@
 .rag-red {
   background-color: #cc222244;
   }
+
+.ag-header-cell-label {
+  justify-content: center;
+  
+  }
+
+.ag-theme-quartz {
+  /*container*/
+  --ag-wrapper-border-radius: 0;
+  --ag-foreground-color: #333333;
+  --ag-background-color: #fff;
+  /*hover*/
+  --ag-row-hover-color: #E2EBF2;
+  /*헤더 텍스트 */
+  --ag-header-foreground-color: #fff;
+  /* 헤더 배경*/
+  --ag-header-background-color: #1F2D37;
+  /* 헤더 구분선*/
+  --ag-header-column-resize-handle-color: #fff;
+  --ag-header-column-resize-handle-height: 35px;
+  --ag-header-column-resize-handle-width: 1px;
+  /* 그리드 구분선*/
+  --ag-row-border-color: #E2EBF2;
+  /* 폰트 */
+  --ag-font-size: 16px;
+  --ag-font-family: pretendard;
+  /* grid 크기*/
+  --ag-grid-size: 8px;
+  }
