@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>test</title>
+</head>
+<body>
+<!--<h1 id="filmTitle">ㅁㄴㅇㄹ</h1>-->
+<!--<img src="" alt="movieImage" id="movieImage"/>-->
+<div id="container">
+  <p>p태그</p>
+  <button id="btn">p태그 생성기 </button>
+</div>
+</body>
+<script>
+  // 1.container태그 변수지정
+  const $container =  document.querySelector('#container');
+  // 2.button 태그 변수지정
+  const $btn = document.querySelector('#btn');
+    // 3.button 태그에 이벤트리스너 붙이기
+  // 4. 이벤트리스너는 클릭
+  // 5. 클릭하면 작동할 함수는
+  // 6. p태그를 만들어서
+  // 7. 텍스트"@@"를 넣고
+  // 8. container 태그에다가 삽입한다.
+    $btn.addEventListener('click',function () {
+    let p = document.createElement('p').textContent = 'asdf';
+    $container.append(p);
+  });
+
+
+  //https://ghibliapi.vercel.app/films
+
+  //
+  // fetch('https://ghibliapi.vercel.app/films')
+  // .then(response = response.json())
+  // .then(ghibliData => {
+  //   document.querySelector('#filmTitle').textContent= `${ghibliData[0].original.title}`;
+  //   document.querySelector('#movieImage').textContent= `${ghibliData[0].image}`;
+  // })
+
+</script>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<button id="btn">토토로생성기</button>
+<div id="container" class="flex bg-blue-100  p-2">
+  <div class="w-40 h-fit  m-2">
+    <img src="http://www.newssunday.co.kr/data/editor/1904/20190430141307_522cccfda397358d323f934bef03320f_3oz3.jpg" alt="">
+    <p>토토로</p>
+  </div>
+</div>
+<hr>
+<br>
+<hr>
+<br>
+<hr>
+
+<h2>답지</h2>
+<div id="container2" class="flex">
+  <div class="p-8 flex-col items-center justify-center w-fit fel">
+    <div class="bg-red-500 rounded-full w-4 h-4 m-8"></div>
+    <p class=" text-center w-full">색상코드</p>
+  </div>
+  <div class="p-8 flex-col items-center justify-center w-fit">
+    <div class="bg-orange-500 rounded-full w-4 h-4 m-8"></div>
+    <p class="  text-center w-full">색상코드</p>
+  </div>
+  <div class="p-8 flex-col items-center justify-center w-fit">
+    <div class="bg-yellow-500 rounded-full w-4 h-4 m-8"></div>
+    <p class="  text-center w-full">색상코드</p>
+  </div>
+  <div class="p-8 flex-col items-center justify-center w-fit">
+    <div class="bg-green-500 rounded-full w-4 h-4 m-8"></div>
+    <p class="  text-center w-full">색상코드</p>
+  </div>
+  <div class="p-8 flex-col items-center justify-center w-fit">
+    <div class="bg-blue-500 rounded-full w-4 h-4 m-8"></div>
+    <p class="  text-center w-full">색상코드</p>
+  </div>
+  <div class="p-8 flex-col items-center justify-center w-fit">
+    <div class="bg-indigo-500 rounded-full w-4 h-4 m-8"></div>
+    <p class="  text-center w-full">색상코드</p>
+  </div>
+  <div class="p-8 flex-col items-center justify-center w-fit">
+    <div class="bg-violet-500 rounded-full w-4 h-4 m-8"></div>
+    <p class="  text-center w-full">색상코드</p>
+  </div>
+</div>
+
+<div id="container3" class="flex">
+
+</div>
+</body>
+
+<script>
+  const COLOR_API = [
+    {
+      id:1,
+      color:'red',
+      code: '#ef4444',
+      className : "bg-red-500"
+    },
+    {
+      id:2,
+      color:'orange',
+      code: '#f87315',
+      className : "bg-orange-500"
+    },
+    {
+      id:3,
+      color:'yellow',
+      code:'#f59e0b',
+      className:"bg-yellow-500"
+    },
+    {
+      id:4,
+      color:'green',
+      code:'#22c55e',
+      className:"bg-green-500"
+    },
+    {
+      id:5,
+      color:'blue',
+      code:'#0ea5e9',
+      className:"bg-blue-500"
+    },{
+      id:6,
+      color:'indigo',
+      code:'#6366f1',
+      className:"bg-indigo-500"
+    },
+    {
+      id:7,
+      color:'violet',
+      code:'#8b5cf6',
+      className:"bg-violet-500"
+    }
+  ]
+  // 문제 COLOR API를 이용해서 반복문으로 답지와 똑같이만들기
+  // 1. 이때 답지의 "색상코드" 텍스트는 API의 code가 들어가야함
+
+
+</script>
+<script>
+  // + class 명 변수화
+  const $class = `w-40 h-fit bg-cyan-700 m-20`;
+  // + src명 변수화
+  const $src = `http://www.newssunday.co.kr/data/editor/1904/20190430141307_522cccfda397358d323f934bef03320f_3oz3.jpg`;
+  // 1. container 변수 지정
+  const $container = document.querySelector('#container');
+  // 2. button 변수지정
+  const $btn = document.querySelector('#btn');
+  // 3. button 에 이벤트리스너 할당
+  // 4. 이벤트리스너 클릭
+  // 5. 이벤트리스너 함수에 div 변수 ,img 변수 생성
+  //
+  //
+  $btn.addEventListener('click', function() {
+// 6. div 변수에 div태그를 생성
+    let _div = document.createElement('div');
+    //+ div 태그에 class 붙이기
+// 7. img 변수에 img태그를 생성
+    let _img = document.createElement('img');
+// 8. img 변수에 src 할당
+    _img.src = $src;
+// 9. div 변수에 class 입력
+    _div.classList.add('w-40');
+    _div.classList.add('h-fit');
+    _div.classList.add('bg-cyan-700');
+    _div.classList.add('m-2');
+// 10.******** img태그를 div 안에 넣고
+    _div.append(_img);
+// 11. div를 container 변수에 넣는다
+    $container.append(_div);
+  });
+  //
+  //
+
+  // 배열에 따라 반복문
+  // [1,2,3].forEach(function(_v,_i) {
+  //   let _div = document.createElement('div');
+  //   let _img = document.createElement('img');
+  //   _img.src = $src;
+  //   _div.classList.add('w-40');
+  //   _div.classList.add('h-fit');
+  //   _div.classList.add('bg-cyan-700');
+  //   _div.classList.add('m-2');
+  //   _div.append(_img);
+  //   $container.append(_div);
+  // });
+
+  // 가상의 API
+  const API = [
+    {
+      id:1,
+      name:'Totoro',
+      src:'http://www.newssunday.co.kr/data/editor/1904/20190430141307_522cccfda397358d323f934bef03320f_3oz3.jpg',
+    },
+    {
+      id:2,
+      name:'이웃집 토토로',
+      src:'https://image.yes24.com/goods/68701021/XL',
+    },
+    {
+      id:3,
+      name:'벼랑위의 포뇨',
+      src:'https://i.namu.wiki/i/OJpe0XP4hDIzjtzEJvmC9qJ_eubeUq7zBteKeFEdIUWFiEBkKszv9NXfiZDZ2PXXDrGyh9drbtcNpTd-fWK6ngvQJabGAl_DUhjv6DyxSJHEsMWI87msioUJ7kaJgHqijjOWdejVdZtESNmom-wAdw.webp',
+    },
+  ];
+  // forEach를 통해서 반복하기
+  //
+  // API.forEach(function(_v,_i) {
+  //   let _div = document.createElement('div');
+  //   let _img = document.createElement('img');
+  //   let _p = document.createElement('p');
+  //   _p.textContent= `${_v.name} : ${_v.id}`;
+  //   _img.src = _v.src;
+  //   _div.classList.add('w-40');
+  //   _div.classList.add('h-fit');
+  //   _div.classList.add('m-2');
+  //   _div.append(_img);
+  //   _div.append(_p);
+  //   $container.append(_div);
+  // });
+
+
+  //for문을 이용해서 반복하기
+  for (let i = 0; i < API.length; i++) {
+    let _div = document.createElement('div');
+    let _img = document.createElement('img');
+    let _p = document.createElement('p');
+    _p.textContent = `${ API[i].name } : ${ API[i].id }`;
+    _img.src = API[i].src;
+    _div.classList.add('w-40');
+    _div.classList.add('h-fit');
+    _div.classList.add('m-2');
+    _div.append(_img);
+    _div.append(_p);
+    $container.append(_div);
+  }
+</script>
+</html>
