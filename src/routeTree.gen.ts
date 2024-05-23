@@ -21,6 +21,7 @@ import { Route as WathceslayoutImport } from './routes/_wathceslayout'
 import { Route as LayoutImport } from './routes/_layout'
 import { Route as IndexImport } from './routes/index'
 import { Route as PostsIndexImport } from './routes/posts.index'
+import { Route as LazyLoadingIndexImport } from './routes/lazy-loading/index'
 import { Route as PostsDeepImport } from './routes/posts_.deep'
 import { Route as PostsPostIdImport } from './routes/posts.$postId'
 import { Route as WrapperRolexImport } from './routes/_wrapper.rolex'
@@ -77,6 +78,11 @@ const AboutIndexLazyRoute = AboutIndexLazyImport.update({
 
 const PostsIndexRoute = PostsIndexImport.update({
   path: '/posts/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const LazyLoadingIndexRoute = LazyLoadingIndexImport.update({
+  path: '/lazy-loading/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -203,6 +209,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PostsDeepImport
       parentRoute: typeof rootRoute
     }
+    '/lazy-loading/': {
+      id: '/lazy-loading/'
+      path: '/lazy-loading/'
+      fullPath: '/lazy-loading/'
+      preLoaderRoute: typeof LazyLoadingIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/posts/': {
       id: '/posts/'
       path: '/posts/'
@@ -246,6 +259,7 @@ export const routeTree = rootRoute.addChildren({
   WatcheslayoutWatchesRoute,
   PostsPostIdRoute,
   PostsDeepRoute,
+  LazyLoadingIndexRoute,
   PostsIndexRoute,
   AboutIndexLazyRoute,
   AboutSettingsIndexRoute,

@@ -19,6 +19,9 @@ function RootComponent() {
         <Link to={'/ag-grid'} style={{ marginLeft: '10px' }}>
           AG-grid
         </Link>
+        <Link to={'/lazy-loading'} style={{ marginLeft: '10px' }}>
+          lazy-loading
+        </Link>
       </nav>
       <hr />
       <Outlet />

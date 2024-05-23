@@ -25,6 +25,7 @@ function HomeComponent() {
       >
         Go to Blog 3
       </Link>
+      <Link to={'lazy-loading'}>go to lazy-loading</Link>
     </main>
   );
 }
