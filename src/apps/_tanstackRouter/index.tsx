@@ -1,1 +1,1 @@
-export { default as TanstackRouterLayout } from './tanstackRouter.layout.tsx';
+export { default as TanstackRouter } from './tanstackRouter.layout.tsx';

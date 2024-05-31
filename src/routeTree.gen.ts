@@ -14,14 +14,15 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as SettingsImport } from './routes/settings'
-import { Route as DayjsImport } from './routes/dayjs'
 import { Route as AgGridImport } from './routes/ag-grid'
 import { Route as WrapperImport } from './routes/_wrapper'
 import { Route as WathceslayoutImport } from './routes/_wathceslayout'
 import { Route as LayoutImport } from './routes/_layout'
 import { Route as IndexImport } from './routes/index'
+import { Route as TanstackQueryIndexImport } from './routes/tanstack-query/index'
 import { Route as PostsIndexImport } from './routes/posts.index'
 import { Route as LazyLoadingIndexImport } from './routes/lazy-loading/index'
+import { Route as DayjsIndexImport } from './routes/dayjs/index'
 import { Route as PostsDeepImport } from './routes/posts_.deep'
 import { Route as PostsPostIdImport } from './routes/posts.$postId'
 import { Route as WrapperRolexImport } from './routes/_wrapper.rolex'
@@ -38,11 +39,6 @@ const AboutIndexLazyImport = createFileRoute('/about/')()
 
 const SettingsRoute = SettingsImport.update({
   path: '/settings',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const DayjsRoute = DayjsImport.update({
-  path: '/dayjs',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -76,6 +72,11 @@ const AboutIndexLazyRoute = AboutIndexLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/about/index.lazy').then((d) => d.Route))
 
+const TanstackQueryIndexRoute = TanstackQueryIndexImport.update({
+  path: '/tanstack-query/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const PostsIndexRoute = PostsIndexImport.update({
   path: '/posts/',
   getParentRoute: () => rootRoute,
@@ -83,6 +84,11 @@ const PostsIndexRoute = PostsIndexImport.update({
 
 const LazyLoadingIndexRoute = LazyLoadingIndexImport.update({
   path: '/lazy-loading/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DayjsIndexRoute = DayjsIndexImport.update({
+  path: '/dayjs/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -160,13 +166,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AgGridImport
       parentRoute: typeof rootRoute
     }
-    '/dayjs': {
-      id: '/dayjs'
-      path: '/dayjs'
-      fullPath: '/dayjs'
-      preLoaderRoute: typeof DayjsImport
-      parentRoute: typeof rootRoute
-    }
     '/settings': {
       id: '/settings'
       path: '/settings'
@@ -209,6 +208,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PostsDeepImport
       parentRoute: typeof rootRoute
     }
+    '/dayjs/': {
+      id: '/dayjs/'
+      path: '/dayjs/'
+      fullPath: '/dayjs/'
+      preLoaderRoute: typeof DayjsIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/lazy-loading/': {
       id: '/lazy-loading/'
       path: '/lazy-loading/'
@@ -221,6 +227,13 @@ declare module '@tanstack/react-router' {
       path: '/posts/'
       fullPath: '/posts/'
       preLoaderRoute: typeof PostsIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/tanstack-query/': {
+      id: '/tanstack-query/'
+      path: '/tanstack-query/'
+      fullPath: '/tanstack-query/'
+      preLoaderRoute: typeof TanstackQueryIndexImport
       parentRoute: typeof rootRoute
     }
     '/about/': {
@@ -254,13 +267,14 @@ export const routeTree = rootRoute.addChildren({
   LayoutRoute: LayoutRoute.addChildren({ LayoutDogsRoute }),
   WrapperRoute: WrapperRoute.addChildren({ WrapperRolexRoute }),
   AgGridRoute,
-  DayjsRoute,
   SettingsRoute,
   WatcheslayoutWatchesRoute,
   PostsPostIdRoute,
   PostsDeepRoute,
+  DayjsIndexRoute,
   LazyLoadingIndexRoute,
   PostsIndexRoute,
+  TanstackQueryIndexRoute,
   AboutIndexLazyRoute,
   AboutSettingsIndexRoute,
   BlogBlogIdIndexRoute,
