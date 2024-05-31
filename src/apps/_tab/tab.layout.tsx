@@ -1,6 +1,7 @@
 import Tab1 from './components/Tab1.tsx';
 import { FormEvent, useEffect, useState } from 'react';
 import useTabStore from './store/useTabStore.ts';
+import Tab2 from './components/Tab2.tsx';
 
 type TODO = any;
 
@@ -15,10 +16,12 @@ const tab = () => {
       <div>
         <button onClick={() => setPage('main')}>Main</button>
         <button onClick={() => setPage('tab1')}>Tab1</button>
+        <button onClick={() => setPage('tab2')}>Tab2</button>
       </div>
+      {/*쿼리스트링으로 바꾸기 */}
       {page === 'main' && <Main />}
       {page === 'tab1' && <Tab1 />}
-      {page === 'tab2' && <Tab1 />}
+      {page === 'tab2' && <Tab2 />}
     </>
   );
 };
@@ -42,7 +45,6 @@ function Main() {
     console.log(e.target.value);
     setMakeThis(e.target.value);
   }
-  useEffect(() => {}, [makeThis]);
 
   return (
     <>
@@ -128,7 +130,26 @@ function InputMaker() {
 function SelectMaker() {
   const { keyContents, setKeyContents } = useTabStore();
   const [optionCount, setOptionCount] = useState(1);
-  const onSubmit = () => {};
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData); // 객체화
+    const options = Object.keys(data)
+      .filter((option) => option.startsWith('optionMakerName'))
+      .map((option) => data[option]);
+    console.log(data);
+    console.log('option', options);
+    console.log('select', data['selectTitleName'], { ...data });
+    // 1. select option 을 useState Count로 관리하므로, Count 를 통해 배열 생성후, data 의 option을 넣음.
+    // const contents = Array.from({ length: optionCount }, (_, i) => {
+    //   const optionName = data[`optionMakerName${i}`];
+    //   return optionName || null; // 필요에 따라 null 대신 다른 기본값 사용 가능
+    // }).filter((item) => item !== null); // null이나 빈 문자열을 제거합니다.
+    // console.log(contents);
+    // 2. data의 key를 추출해서 Name을 검색해서 배열로 포장
+
+    // setKeyContents('select', data['selectTitleName'], { ...data });
+  };
   const handleAddOption = (e) => {
     e.preventDefault();
     setOptionCount(optionCount + 1);
@@ -136,20 +157,23 @@ function SelectMaker() {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <label htmlFor="">SELECT LABEL 이름</label>
-        <input type="text" id="selectMakerId" name="selectMakerName" />
-        <button onClick={handleAddOption}> 옵션추가하기</button>
+        <label htmlFor="">SELECT Title</label>
+        <input type="text" id="selectTitleId" name="selectTitleName" />
         <br />
-        <br />
-        <label htmlFor=""></label>
+        <button onClick={handleAddOption}>SELECT 옵션 추가하기</button>
         {Array.from({ length: optionCount }, (_, i) => (
           <>
-            <input type="text" id="optionMakerId" name="optionMakerName" />
+            <br />
+            <input
+              type="text"
+              id={`optionMakerId${i}`}
+              name={`optionMakerName${i}`}
+            />
             <br />
           </>
         ))}
+        <button type="submit">추가하기</button>
       </form>
-      <button type="submit">추가하기</button>
     </>
   );
 }

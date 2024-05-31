@@ -36,7 +36,7 @@ const useTabStore = create((set, get) => ({
       set({
         keyContents: [
           ...get().keyContents,
-          { id: get().keyContents.length, type, contents: [...options] },
+          { id: get().keyContents.length, label, type, contents: [...options] },
         ],
       });
     }
