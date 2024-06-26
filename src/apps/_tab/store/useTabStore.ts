@@ -1,10 +1,40 @@
 import { create } from 'zustand';
 
 const useTabStore = create((set, get) => ({
-  tagList: [],
-  tabContents: {},
+  activeTab: [],
+  tabContents: [
+    {
+      id: 0,
+      tabName: 'test',
+      input1: 'input1',
+      input2: 'input2',
+      input3: 1500,
+    },
+  ],
   action: {
-    setTagList: (tabs) => {},
+    setActiveTab(tabName = 'tab') {
+      set((state) => {
+        // 에러 작성
+        if (state.activeTab.includes(tabName)) {
+          return state;
+        } else {
+          return {
+            tabContents: [...state.tabContents, tabName],
+          };
+        }
+      });
+    },
+    setRemoveTab(tabName = 'tab') {
+      set({
+        activeTab: get().activeTab.filter((tab) => tabName !== tab),
+        // tabContents 배열에서 tabName 과 tabContents 객체의 tabName 과 동일하면 그 객체 삭제
+      });
+    },
+    setTabContents() {
+      set({
+        tabContents: [...get().tabContents, tabName, ...rest],
+      });
+    },
   },
 }));
 
