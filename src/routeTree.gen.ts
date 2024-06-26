@@ -20,6 +20,7 @@ import { Route as WathceslayoutImport } from './routes/_wathceslayout'
 import { Route as LayoutImport } from './routes/_layout'
 import { Route as IndexImport } from './routes/index'
 import { Route as TanstackQueryIndexImport } from './routes/tanstack-query/index'
+import { Route as TabsIndexImport } from './routes/tabs/index'
 import { Route as PostsIndexImport } from './routes/posts.index'
 import { Route as LazyLoadingIndexImport } from './routes/lazy-loading/index'
 import { Route as DayjsIndexImport } from './routes/dayjs/index'
@@ -74,6 +75,11 @@ const AboutIndexLazyRoute = AboutIndexLazyImport.update({
 
 const TanstackQueryIndexRoute = TanstackQueryIndexImport.update({
   path: '/tanstack-query/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TabsIndexRoute = TabsIndexImport.update({
+  path: '/tabs/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -229,6 +235,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PostsIndexImport
       parentRoute: typeof rootRoute
     }
+    '/tabs/': {
+      id: '/tabs/'
+      path: '/tabs/'
+      fullPath: '/tabs/'
+      preLoaderRoute: typeof TabsIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/tanstack-query/': {
       id: '/tanstack-query/'
       path: '/tanstack-query/'
@@ -274,6 +287,7 @@ export const routeTree = rootRoute.addChildren({
   DayjsIndexRoute,
   LazyLoadingIndexRoute,
   PostsIndexRoute,
+  TabsIndexRoute,
   TanstackQueryIndexRoute,
   AboutIndexLazyRoute,
   AboutSettingsIndexRoute,

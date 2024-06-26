@@ -30,9 +30,15 @@ const useTabStore = create((set, get) => ({
         // tabContents 배열에서 tabName 과 tabContents 객체의 tabName 과 동일하면 그 객체 삭제
       });
     },
-    setTabContents() {
-      set({
-        tabContents: [...get().tabContents, tabName, ...rest],
+    setTabContents(tabName, data) {
+      set((state) => {
+        state.tabContents.id = state.tabContents.length + 1;
+        state.tabContents.tabName = tabName;
+        state.tabContents.data = data;
+        console.log('tabcontents', state.tabContents);
+        return {
+          tabContents: [...state.tabContents, state.tabContents],
+        };
       });
     },
   },
