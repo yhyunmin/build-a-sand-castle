@@ -22,6 +22,9 @@ function RootComponent() {
         <Link to={'/lazy-loading'} style={{ marginLeft: '10px' }}>
           lazy-loading
         </Link>
+        <Link to={'/tabs'} style={{ marginLeft: '10px' }}>
+          tabs
+        </Link>
       </nav>
       <hr />
       <Outlet />

@@ -29,6 +29,7 @@ import { Route as PostsPostIdImport } from './routes/posts.$postId'
 import { Route as WrapperRolexImport } from './routes/_wrapper.rolex'
 import { Route as WatcheslayoutWatchesImport } from './routes/_watcheslayout.watches'
 import { Route as LayoutDogsImport } from './routes/_layout.dogs'
+import { Route as TabsMainIndexImport } from './routes/tabs/main/index'
 import { Route as BlogBlogIdIndexImport } from './routes/blog/$blogId/index'
 import { Route as AboutSettingsIndexImport } from './routes/about/settings/index'
 
@@ -121,6 +122,11 @@ const WatcheslayoutWatchesRoute = WatcheslayoutWatchesImport.update({
 const LayoutDogsRoute = LayoutDogsImport.update({
   path: '/dogs',
   getParentRoute: () => LayoutRoute,
+} as any)
+
+const TabsMainIndexRoute = TabsMainIndexImport.update({
+  path: '/tabs/main/',
+  getParentRoute: () => rootRoute,
 } as any)
 
 const BlogBlogIdIndexRoute = BlogBlogIdIndexImport.update({
@@ -270,6 +276,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogBlogIdIndexImport
       parentRoute: typeof rootRoute
     }
+    '/tabs/main/': {
+      id: '/tabs/main/'
+      path: '/tabs/main/'
+      fullPath: '/tabs/main/'
+      preLoaderRoute: typeof TabsMainIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -292,6 +305,7 @@ export const routeTree = rootRoute.addChildren({
   AboutIndexLazyRoute,
   AboutSettingsIndexRoute,
   BlogBlogIdIndexRoute,
+  TabsMainIndexRoute,
 })
 
 /* prettier-ignore-end */

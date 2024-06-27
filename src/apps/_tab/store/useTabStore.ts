@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 
 const useTabStore = create((set, get) => ({
+  inputKeyContents: [{ input1: 'title' }],
   activeTab: [],
   tabContents: [
     {
@@ -12,6 +13,9 @@ const useTabStore = create((set, get) => ({
     },
   ],
   action: {
+    setInputKeyContents() {
+      set((state) => {});
+    },
     setActiveTab(tabName = 'tab') {
       set((state) => {
         // 에러 작성
