@@ -66,7 +66,7 @@ function Main() {
       {makeThis === 'input' ? (
         <InputMaker />
       ) : makeThis === 'select' ? (
-        <h1>hh</h1>
+        <SelectMaker />
       ) : null}
       <ul>
         <h3>생성 목록</h3>
@@ -99,19 +99,15 @@ function Main() {
 // input3:phonenumber
 function InputMaker() {
   const { inputKeyContents, setInputKeyContents } = useTabStore();
-
   const onSubmit = (e) => {
     e.preventDefault();
-    // console.log(e.target.inputMakerId.value);
     const formData = new FormData(e.currentTarget);
     // formData 내부 data 가져오기 {name : value}
     const data = Object.fromEntries(formData);
-
     setInputKeyContents(
       `input${inputKeyContents.length + 1}`,
       data[Object.keys(data)[0]],
     );
-    console.log('data', data);
   };
   return (
     <>
@@ -121,6 +117,34 @@ function InputMaker() {
         <input type="text" id="inputMakerId" name="inputMakerName" />
         <button type="submit">추가하기</button>
       </form>
+    </>
+  );
+}
+function SelectMaker() {
+  const { keyContents, setKeyContents } = useTabStore();
+  const [optionCount, setOptionCount] = useState(1);
+  const onSubmit = () => {};
+  const handleAddOption = (e) => {
+    e.preventDefault();
+    setOptionCount(optionCount + 1);
+  };
+  return (
+    <>
+      <form onSubmit={onSubmit}>
+        <label htmlFor="">SELECT LABEL 이름</label>
+        <input type="text" id="selectMakerId" name="selectMakerName" />
+        <button onClick={handleAddOption}> 옵션추가하기</button>
+        <br />
+        <br />
+        <label htmlFor=""></label>
+        {Array.from({ length: optionCount }, (_, i) => (
+          <>
+            <input type="text" id="optionMakerId" name="optionMakerName" />
+            <br />
+          </>
+        ))}
+      </form>
+      <button type="submit">추가하기</button>
     </>
   );
 }

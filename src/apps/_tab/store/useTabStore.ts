@@ -2,6 +2,10 @@ import { create } from 'zustand';
 
 const useTabStore = create((set, get) => ({
   inputKeyContents: [{ input1: 'title' }],
+  keyContents: [
+    { id: 0, type: 'input', contents: ['value'] },
+    { id: 1, type: 'select', contents: ['옵션1', '옵션2'] },
+  ],
   activeTab: [],
   tabContents: [
     {
@@ -15,6 +19,23 @@ const useTabStore = create((set, get) => ({
   setInputKeyContents: (type, value) =>
     set({ inputKeyContents: [...get().inputKeyContents, { [type]: value }] }),
 
+  setKeyContents: (type, value, ...options) => {
+    if (type === 'input') {
+      set({
+        keyContents: [
+          ...get().keyContents,
+          { id: get().keyContents.length, type, contents: value },
+        ],
+      });
+    } else if (type === 'select') {
+      set({
+        keyContents: [
+          ...get().keyContents,
+          { id: get().keyContents.length, type, contents: [...options] },
+        ],
+      });
+    }
+  },
   action: {
     setInputKeyContents() {
       set((state) => {});
