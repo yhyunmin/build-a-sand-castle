@@ -27,9 +27,10 @@ const tab = () => {
 // ===============================
 // ===============================
 // ===============================
+
 function Main() {
   const [makeThis, setMakeThis] = useState();
-  const { inputKeyContents, setInputKeyContents } = useTabStore();
+  const { keyContents, inputKeyContents, setInputKeyContents } = useTabStore();
   //TODO zustand store 가져오기
   console.log(inputKeyContents);
   function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -69,52 +70,56 @@ function Main() {
         <SelectMaker />
       ) : null}
       <ul>
-        <h3>생성 목록</h3>
-        {inputKeyContents &&
-          inputKeyContents.map((v, i) => {
-            // 객체는 이렇게 돌리기
-            return Object.keys(v).map((key) => (
-              <h1 key={`${i}-${key}`}>
-                {key}: {v[key]}
-              </h1>
-            ));
+        <h1>현재 keyContents 목록</h1>
+
+        {/*{inputKeyContents &&*/}
+        {/*  inputKeyContents.map((v, i) => {*/}
+        {/*    // 객체는 이렇게 돌리기*/}
+        {/*    return Object.keys(v).map((key) => (*/}
+        {/*      <h1 key={`${i}-${key}`}>*/}
+        {/*        {key}: {v[key]}*/}
+        {/*      </h1>*/}
+        {/*    ));*/}
+        {/*  })}*/}
+        {Boolean(keyContents) &&
+          keyContents.map((객체, i) => {
+            return (
+              <p>
+                순번 : {객체.id + 1}
+                타입 : {객체.type}
+                타이틀 : {객체.label}
+                컨텐츠 : {객체.contents}
+              </p>
+            );
           })}
       </ul>
     </>
   );
 }
-//
-// ===============================
-// ===============================
-// ===============================
-// ===============================
-//
-//msw
-// input1 : title
-// input2 : address
-// select1 :{
-// option1: y
-// option2: n
-// }
-// input3:phonenumber
+
 function InputMaker() {
-  const { inputKeyContents, setInputKeyContents } = useTabStore();
+  // const { inputKeyContents, setInputKeyContents } = useTabStore();
+  const { keyContents, setKeyContents } = useTabStore();
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     // formData 내부 data 가져오기 {name : value}
     const data = Object.fromEntries(formData);
-    setInputKeyContents(
-      `input${inputKeyContents.length + 1}`,
-      data[Object.keys(data)[0]],
-    );
+    // setInputKeyContents(
+    //   `input${inputKeyContents.length + 1}`,
+    //   data[Object.keys(data)[0]],
+    // );
+    // console.log(data); {inputTitleName: 'ㄳㄴㄷㅅ', inputContentsName: 'ㄴㄷㅅㄴㅅ'}
+    setKeyContents('input', data['inputTitleName'], data['inputContentsName']);
   };
   return (
     <>
       <form onSubmit={onSubmit}>
-        <label htmlFor="inputMakerId">인풋 네임</label>
         <br />
-        <input type="text" id="inputMakerId" name="inputMakerName" />
+        <label htmlFor="inputTitleId">인풋 타이틀</label>
+        <input type="text" id="inputTitleId" name="inputTitleName" />
+        <label htmlFor="inputContentsId">인풋 컨텐츠</label>
+        <input type="text" id="inputContentsId" name="inputContentsName" />
         <button type="submit">추가하기</button>
       </form>
     </>

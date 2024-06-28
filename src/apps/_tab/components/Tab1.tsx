@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useState } from 'react';
 import useTabStore from '../store/useTabStore.ts';
 
+//TODO 메인에서 등록한 INPUT ,SELECT OPTION 화면에 출력하기 => submit 통해서 store 에 값 보내기
 const Tab1 = () => {
   const thisTabContents = useTabStore((state) => state.action.setTabContents);
 
