@@ -12,6 +12,9 @@ const useTabStore = create((set, get) => ({
       input3: 1500,
     },
   ],
+  setInputKeyContents: (type, value) =>
+    set({ inputKeyContents: [...get().inputKeyContents, { [type]: value }] }),
+
   action: {
     setInputKeyContents() {
       set((state) => {});

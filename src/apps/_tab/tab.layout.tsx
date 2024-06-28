@@ -1,7 +1,6 @@
 import Tab1 from './components/Tab1.tsx';
 import { FormEvent, useEffect, useState } from 'react';
 import useTabStore from './store/useTabStore.ts';
-import { literal } from 'zod';
 
 type TODO = any;
 
@@ -30,10 +29,9 @@ const tab = () => {
 // ===============================
 function Main() {
   const [makeThis, setMakeThis] = useState();
+  const { inputKeyContents, setInputKeyContents } = useTabStore();
   //TODO zustand store 가져오기
-  const inputKeyContents = useTabStore((state) => state.InputKeyContents);
   console.log(inputKeyContents);
-
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(e);
@@ -74,11 +72,12 @@ function Main() {
         <h3>생성 목록</h3>
         {inputKeyContents &&
           inputKeyContents.map((v, i) => {
-            for (let key in v) {
-              <li>
-                {key},{v[key]}
-              </li>;
-            }
+            // 객체는 이렇게 돌리기
+            return Object.keys(v).map((key) => (
+              <h1 key={`${i}-${key}`}>
+                {key}: {v[key]}
+              </h1>
+            ));
           })}
       </ul>
     </>
@@ -99,15 +98,27 @@ function Main() {
 // }
 // input3:phonenumber
 function InputMaker() {
+  const { inputKeyContents, setInputKeyContents } = useTabStore();
+
   const onSubmit = (e) => {
-    const formData = new FormData();
+    e.preventDefault();
+    // console.log(e.target.inputMakerId.value);
+    const formData = new FormData(e.currentTarget);
+    // formData 내부 data 가져오기 {name : value}
+    const data = Object.fromEntries(formData);
+
+    setInputKeyContents(
+      `input${inputKeyContents.length + 1}`,
+      data[Object.keys(data)[0]],
+    );
+    console.log('data', data);
   };
   return (
     <>
       <form onSubmit={onSubmit}>
         <label htmlFor="inputMakerId">인풋 네임</label>
         <br />
-        <input type="text" id="inputMakerId" />
+        <input type="text" id="inputMakerId" name="inputMakerName" />
         <button type="submit">추가하기</button>
       </form>
     </>
