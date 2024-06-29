@@ -1,43 +1,65 @@
-import { FormEvent, useEffect, useState } from 'react';
 import useTabStore from '../store/useTabStore.ts';
+import { useEffect, useState } from 'react';
+import { use } from 'msw/lib/core/utils/internal/requestHandlerUtils';
 
-//TODO 메인에서 등록한 INPUT ,SELECT OPTION 화면에 출력하기 => submit 통해서 store 에 값 보내기
 const Tab1 = () => {
-  const thisTabContents = useTabStore((state) => state.action.setTabContents);
+  const { keyContents } = useTabStore();
+  const [contents, setContents] = useState([]);
 
-  useEffect(() => {
-    return () => {
-      //
-    };
-  }, []);
-
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    const data = {};
+  const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    for (let [key, value] of formData.entries()) {
-      data[key] = value;
-      // useStore 에 넣기
-      console.log({ key, value });
-    }
-    thisTabContents(data);
+    const data = Object.fromEntries(formData);
     console.log(data);
-  }
+  };
+  useEffect(() => {
+    setContents(keyContents);
+    console.log('keyContents', keyContents);
+  }, [keyContents]);
+
+  useEffect(() => {}, []);
   return (
     <>
-      <h1>tab1</h1>
-      <form onSubmit={handleSubmit}>
-        <input name="input1" id="input1" type="text" />
-        <input name="input2" id="input2" type="text" />
-        <input name="input3" id="input3" type="text" />
-        <input name="input4" id="input4" type="text" />
-        <select name="input5" id="input5">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </select>
-        <input name="" id="input6" type="text" />
-        <button type="submit">submit</button>
+      <h1>TAB입니다</h1>
+      <hr />
+      <form onSubmit={onSubmit}>
+        {contents.map((content, index) => {
+          if (content.type === 'select') {
+            return (
+              <div key={`select-container-${{ index }}`}>
+                <label htmlFor={`select${index}`}>{content.label}</label>
+                <br />
+                <select id={`select${index}`} name={`selectName${index}`}>
+                  {!!content.contents &&
+                    content.contents.map((option, optionIndex) => (
+                      <option
+                        value={option}
+                        key={`option-${index}-${optionIndex}`}
+                      >
+                        {option}
+                      </option>
+                    ))}
+                </select>
+              </div>
+            );
+          } else if (content.type === 'input') {
+            return (
+              <div key={`input-container-${{ index }}`}>
+                <label htmlFor={`input${index}`}>{content.label}</label>
+                <br />
+                <input
+                  type="text"
+                  id={`input${index}`}
+                  key={`input-${index}`}
+                  name={`inputName${index}`}
+                />
+                <br />
+              </div>
+            );
+          }
+          return null;
+        })}
+        <button>fsubmit 버튼</button>
       </form>
     </>
   );

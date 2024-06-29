@@ -35,14 +35,14 @@ function Main() {
   const [makeThis, setMakeThis] = useState();
   const { keyContents, inputKeyContents, setInputKeyContents } = useTabStore();
   //TODO zustand store 가져오기
-  console.log(inputKeyContents);
+  // console.log(inputKeyContents);
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(e);
+    // console.log(e);
     return;
   }
   function onChange(e) {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setMakeThis(e.target.value);
   }
 
@@ -86,7 +86,7 @@ function Main() {
         {Boolean(keyContents) &&
           keyContents.map((객체, i) => {
             return (
-              <p>
+              <p key={i}>
                 순번 : {객체.id + 1}
                 타입 : {객체.type}
                 타이틀 : {객체.label}
@@ -137,9 +137,9 @@ function SelectMaker() {
     const options = Object.keys(data)
       .filter((option) => option.startsWith('optionMakerName'))
       .map((option) => data[option]);
-    console.log(data);
-    console.log('option', options);
-    console.log('select', data['selectTitleName']);
+    // console.log(data);
+    // console.log('option', options);
+    // console.log('select', data['selectTitleName']);
     setKeyContents('select', data['selectTitleName'], options);
     // 1. select option 을 useState Count로 관리하므로, Count 를 통해 배열 생성후, data 의 option을 넣음.
     // const contents = Array.from({ length: optionCount }, (_, i) => {

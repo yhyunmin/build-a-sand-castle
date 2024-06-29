@@ -12,8 +12,10 @@ const useTabStore = create((set, get) => ({
     },
   ],
   activeTab: [],
-  tabContents: [
+  tabContentsValue: [
     {
+      // index
+      // label : value
       id: 0,
       tabName: 'test',
       input1: 'input1',
