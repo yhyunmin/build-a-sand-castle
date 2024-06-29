@@ -24,19 +24,19 @@ const useTabStore = create((set, get) => ({
   setInputKeyContents: (type, value) =>
     set({ inputKeyContents: [...get().inputKeyContents, { [type]: value }] }),
 
-  setKeyContents: (type, label, value, ...options) => {
+  setKeyContents: (type, label, contents) => {
     if (type === 'input') {
       set({
         keyContents: [
           ...get().keyContents,
-          { id: get().keyContents.length, label, type, contents: value },
+          { id: get().keyContents.length, label, type, contents },
         ],
       });
     } else if (type === 'select') {
       set({
         keyContents: [
           ...get().keyContents,
-          { id: get().keyContents.length, label, type, contents: [...options] },
+          { id: get().keyContents.length, label, type, contents },
         ],
       });
     }

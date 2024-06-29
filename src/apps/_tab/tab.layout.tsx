@@ -139,7 +139,8 @@ function SelectMaker() {
       .map((option) => data[option]);
     console.log(data);
     console.log('option', options);
-    console.log('select', data['selectTitleName'], { ...data });
+    console.log('select', data['selectTitleName']);
+    setKeyContents('select', data['selectTitleName'], options);
     // 1. select option 을 useState Count로 관리하므로, Count 를 통해 배열 생성후, data 의 option을 넣음.
     // const contents = Array.from({ length: optionCount }, (_, i) => {
     //   const optionName = data[`optionMakerName${i}`];
@@ -168,6 +169,7 @@ function SelectMaker() {
               type="text"
               id={`optionMakerId${i}`}
               name={`optionMakerName${i}`}
+              key={i}
             />
             <br />
           </>
