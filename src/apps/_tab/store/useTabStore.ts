@@ -11,18 +11,16 @@ const useTabStore = create((set, get) => ({
       contents: ['옵션1', '옵션2'],
     },
   ],
-  activeTab: [],
-  tabContentsValue: [
-    {
-      // index
-      // label : value
-      id: 0,
-      tabName: 'test',
-      input1: 'input1',
-      input2: 'input2',
-      input3: 1500,
-    },
+  savedContentsValue: [
+    { tabName: 'inputName1', value: 'value' },
+    { tabName: 'selectName1', value: ['value1', 'value2'] },
   ],
+
+  tabContentsValue: {},
+  setSaveTabContents: (data) => {
+    set({ tabContentsValue: data });
+  },
+
   setInputKeyContents: (type, value) =>
     set({ inputKeyContents: [...get().inputKeyContents, { [type]: value }] }),
 

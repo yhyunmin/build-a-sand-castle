@@ -1,9 +1,8 @@
 import useTabStore from '../store/useTabStore.ts';
 import { useEffect, useState } from 'react';
-import { use } from 'msw/lib/core/utils/internal/requestHandlerUtils';
 
 const Tab1 = () => {
-  const { keyContents } = useTabStore();
+  const { keyContents, savedContentsValue, tabContentsValue } = useTabStore();
   const [contents, setContents] = useState([]);
 
   const onSubmit = (e) => {
@@ -13,11 +12,24 @@ const Tab1 = () => {
     console.log(data);
   };
   useEffect(() => {
-    setContents(keyContents);
+    console.log('tabContentsValue', Boolean(tabContentsValue));
+    if (!Boolean(tabContentsValue)) {
+      setContents([tabContentsValue]);
+    } else {
+      // savedCOntentsValue input에 넣기
+      setContents(keyContents);
+      console.log('contents', contents);
+    }
     console.log('keyContents', keyContents);
-  }, [keyContents]);
+  }, [keyContents, savedContentsValue]);
+
+  //
+  //TODO : unmount 시 가지고있는 input select 의 value 를 store로 이동.
+  // mount 시 store 의 저장되어있는 벨류 있으면 그 벨류 가져오기
+  //
 
   useEffect(() => {}, []);
+
   return (
     <>
       <h1>TAB입니다</h1>
