@@ -1,5 +1,5 @@
 import useTabStore from '../store/useTabStore.ts';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 const Tab2 = () => {
   // tab의 기술구현을 리팩토링함
@@ -11,20 +11,40 @@ const Tab2 = () => {
     setKeyContents,
   } = useTabStore();
 
+  // 비효율 상태업데이트 개선을위한 useCallback
+
+  const updateKeyContent = useCallback(
+    (id, value) => {
+      setKeyContents((prev) =>
+        prev.map((content) => (content.id ? { ...content, value } : content)),
+      ); // batching 때문에 이전 상태값
+    },
+    [setKeyContents],
+  );
+  //
+  // useEffect(() => {
+  //   if (savedContentsValue.length > 0) {
+  //     const updatedKeyContents = keyContents.map((content) => {
+  //       const savedValue = savedContentsValue.find(
+  //         (item) => item.name === `${content.type}Name${content.id}`,
+  //       );
+  //       if (savedValue) {
+  //         return { ...content, value: savedValue.value };
+  //       }
+  //       return content;
+  //     });
+  //     setKeyContents(updatedKeyContents);
+  //   }
+  // }, [savedContentsValue]);
+  //
   useEffect(() => {
     if (savedContentsValue.length > 0) {
-      const updatedKeyContents = keyContents.map((content) => {
-        const savedValue = savedContentsValue.find(
-          (item) => item.name === `${content.type}Name${content.id}`,
-        );
-        if (savedValue) {
-          return { ...content, value: savedValue.value };
-        }
-        return content;
+      savedContentsValue.forEach((savedItem) => {
+        const [type, id] = savedItem.split('Name');
+        updateKeyContent(Number(id), savedItem.value);
       });
-      setKeyContents(updatedKeyContents);
     }
-  }, [savedContentsValue]);
+  }, [savedContentsValue, updateKeyContent]);
   return (
     <>
       <h1>tab2입니다</h1>
