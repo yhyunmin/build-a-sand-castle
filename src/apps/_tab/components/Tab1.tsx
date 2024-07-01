@@ -2,33 +2,58 @@ import useTabStore from '../store/useTabStore.ts';
 import { useEffect, useState } from 'react';
 
 const Tab1 = () => {
-  const { keyContents, savedContentsValue, tabContentsValue } = useTabStore();
+  const {
+    keyContents,
+    savedContentsValue,
+    setSavedTabContents,
+    tabContentsValue,
+  } = useTabStore();
   const [contents, setContents] = useState([]);
 
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
+    //data :
     console.log(data);
+    // {네임 : 벨류 }
+    setSavedTabContents(data);
+    console.log('tabContentsValue', tabContentsValue);
   };
+
+  // 초기값 불러오기
+  // useEffect(() => {
+  //   if (!Boolean(tabContentsValue)) {
+  //     setContents([tabContentsValue]);
+  //   } else {
+  //     // savedCOntentsValue input에 넣기
+  //     setContents(keyContents);
+  //     console.log('contents', contents);
+  //   }
+  //   console.log('keyContents', keyContents);
+  // }, [keyContents, savedContentsValue]);
+  // 초기값 불러오기 2
   useEffect(() => {
-    console.log('tabContentsValue', Boolean(tabContentsValue));
-    if (!Boolean(tabContentsValue)) {
-      setContents([tabContentsValue]);
-    } else {
-      // savedCOntentsValue input에 넣기
-      setContents(keyContents);
-      console.log('contents', contents);
+    let newContents = [...keyContents];
+    if (savedContentsValue.length > 0) {
+      newContents = newContents.map((content) => {
+        const savedValue = savedContentsValue.find(
+          (i) => i.name === `${content.type}Name${content.id}`,
+        );
+        if (savedValue) {
+          return { ...content, value: savedValue.value };
+        }
+        return content;
+      });
     }
-    console.log('keyContents', keyContents);
+    setContents(newContents);
+    console.log(contents);
   }, [keyContents, savedContentsValue]);
 
   //
   //TODO : unmount 시 가지고있는 input select 의 value 를 store로 이동.
   // mount 시 store 의 저장되어있는 벨류 있으면 그 벨류 가져오기
   //
-
-  useEffect(() => {}, []);
 
   return (
     <>
@@ -41,7 +66,11 @@ const Tab1 = () => {
               <div key={`select-container-${{ index }}`}>
                 <label htmlFor={`select${index}`}>{content.label}</label>
                 <br />
-                <select id={`select${index}`} name={`selectName${index}`}>
+                <select
+                  id={`select${index}`}
+                  name={`selectName${index}`}
+                  value={content.value || ''}
+                >
                   {!!content.contents &&
                     content.contents.map((option, optionIndex) => (
                       <option
@@ -64,6 +93,7 @@ const Tab1 = () => {
                   id={`input${index}`}
                   key={`input-${index}`}
                   name={`inputName${index}`}
+                  value={content.value || ''}
                 />
                 <br />
               </div>

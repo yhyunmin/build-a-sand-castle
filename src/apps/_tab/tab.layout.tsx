@@ -48,7 +48,7 @@ function Main() {
 
   return (
     <>
-      <h2>input & select</h2>
+      <h2 style={{ border: '1.5px solid black' }}>input & select</h2>
       <input
         type="radio"
         name="makeOne"

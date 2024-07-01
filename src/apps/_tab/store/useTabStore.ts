@@ -1,9 +1,13 @@
 import { create } from 'zustand';
 
 const useTabStore = create((set, get) => ({
-  inputKeyContents: [{ input1: 'title' }],
   keyContents: [
-    { id: 0, type: 'input', label: 'input-title', contents: ['value'] },
+    {
+      id: 0,
+      type: 'input',
+      label: 'input-title',
+      contents: ['value'],
+    },
     {
       id: 1,
       type: 'select',
@@ -12,12 +16,12 @@ const useTabStore = create((set, get) => ({
     },
   ],
   savedContentsValue: [
-    { tabName: 'inputName1', value: 'value' },
-    { tabName: 'selectName1', value: ['value1', 'value2'] },
+    {
+      inputName0: 'test',
+      selectName1: '옵션2',
+    },
   ],
-
-  tabContentsValue: {},
-  setSaveTabContents: (data) => {
+  setSavedTabContents: (data) => {
     set({ tabContentsValue: data });
   },
 
@@ -29,14 +33,14 @@ const useTabStore = create((set, get) => ({
       set({
         keyContents: [
           ...get().keyContents,
-          { id: get().keyContents.length, label, type, contents },
+          { id: get().keyContents.length, label, type, contents, value: '' },
         ],
       });
     } else if (type === 'select') {
       set({
         keyContents: [
           ...get().keyContents,
-          { id: get().keyContents.length, label, type, contents },
+          { id: get().keyContents.length, label, type, contents, value: '' },
         ],
       });
     }
