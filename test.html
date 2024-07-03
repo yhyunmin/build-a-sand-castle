@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <style>
+    #datepicker-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 120px;
+      white-space: nowrap; /* 요소들을 한 줄로 정렬 */
+      height: 450px;
+      overflow: auto;
+      scrollbar-gutter: stable;
+      padding-right: 0;
+      }
+    .datepicker-day {
+      margin: 10px;
+      display: flex; /* 인라인 블록 요소로 설정하여 가로 배치 */
+      justify-content: center;
+      align-content: center;
+      width: 40px; /* 각 날짜 요소의 너비 */
+      text-align: center; /* 텍스트 가운데 정렬 */
+      cursor: pointer; /* 커서 모양 변경 */
+      padding: 10px 0; /* 상하 여백 추가 */
+      border: 1px solid #ccc; /* 테두리 설정 */
+      margin-right: -1px; /* 테두리 겹침 방지 */
+      }
+    .datepicker-day:hover {
+      background-color: #f0f0f0; /* 호버 시 배경색 변경 */
+      }
+    .selected {
+      background-color: #007bff; /* 선택된 날짜의 배경색 */
+      color: white; /* 선택된 날짜의 텍스트 색상 */
+      }
+  </style>
+</head>
+<body>
+<label for="year">연도</label>
+<input type="number" id="year" min="1900" max="2100" value="2024">
+<label for="month">월</label>
+<input type="number" id="month" min="1" max="12" value="7">
+<button id="generateDates">날짜 생성</button>
+
+<label for="selectedDate">선택된 날짜</label>
+<input type="text" id="selectedDate" name="selectedDate" readonly>
+<div id="datepicker-container"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+  $(function() {
+    function daysInMonth(month, year) {
+      return new Date(year, month, 0).getDate();
+    }
+
+    function generateDatePicker(year, month) {
+      $('#datepicker-container').empty(); // 기존 날짜 요소 제거
+
+      const days = daysInMonth(month, year);
+      for (let day = 1; day <= days; day++) {
+        const dayElement = $('<div>')
+        .addClass('datepicker-day')
+        .text(day)
+        .click(function() {
+          $('.datepicker-day').removeClass('selected');
+          $(this).addClass('selected');
+          const selectedDate = new Date(year, month - 1, day); // month는 0부터 시작하므로 -1
+          const dateString = $.datepicker.formatDate('yy-mm-dd', selectedDate);
+          $('#selectedDate').val(dateString);
+
+          // 선택한 요소를 중앙으로 스크롤 ++
+          this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+        $('#datepicker-container').append(dayElement);
+      }
+    }
+
+    // input 에서 받아오는 날짜 테스트
+    $('#generateDates').click(function() {
+      const year = $('#year').val();
+      const month = $('#month').val();
+      if (year && month) {
+        generateDatePicker(year, month);
+      } else {
+        alert('연도와 월을 입력해주세요.');
+      }
+    });
+
+    // 초기 날짜 생성 ++
+    generateDatePicker(2023, 1); // 요기 년 월 에 따라서 day picker 가 나타나요.
+  });
+</script>
+</body>
+</html>

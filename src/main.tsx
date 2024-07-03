@@ -59,7 +59,17 @@ const router = createRouter({ routeTree });
 
 const rootElement = document.getElementById('root')!;
 
-if (!rootElement.innerHTML) {
-  const root = ReactDOM.createRoot(rootElement);
-  root.render(<RouterProvider router={router} />);
+async function enableMocking() {
+  if (process.env.NODE_ENV !== 'development') {
+    return;
+  }
+  const { worker } = await import('./mocks/worker.js');
+  return worker.start();
 }
+
+enableMocking().then(() => {
+  if (!rootElement.innerHTML) {
+    const root = ReactDOM.createRoot(rootElement);
+    root.render(<RouterProvider router={router} />);
+  }
+});

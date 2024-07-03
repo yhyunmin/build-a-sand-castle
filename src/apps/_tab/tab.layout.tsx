@@ -2,6 +2,8 @@ import Tab1 from './components/Tab1.tsx';
 import { FormEvent, useEffect, useState } from 'react';
 import useTabStore from './store/useTabStore.ts';
 import Tab2 from './components/Tab2.tsx';
+import Tab3 from './components/Tab3.tsx';
+import Tab4 from './components/Tab4.tsx';
 
 type TODO = any;
 
@@ -16,12 +18,16 @@ const tab = () => {
       <div>
         <button onClick={() => setPage('main')}>Main</button>
         <button onClick={() => setPage('tab1')}>Tab1</button>
-        <button onClick={() => setPage('tab2')}>Tab2</button>
+        <button onClick={() => setPage('tab2')}>Tab2(FOMRDATA사용) </button>
+        <button onClick={() => setPage('tab3')}>Tab3(REF사용)</button>
+        <button onClick={() => setPage('tab4')}>Tab4(리액트훅폼사용)</button>
       </div>
       {/*쿼리스트링으로 바꾸기 */}
       {page === 'main' && <Main />}
       {page === 'tab1' && <Tab1 />}
       {page === 'tab2' && <Tab2 />}
+      {page === 'tab3' && <Tab3 />}
+      {page === 'tab4' && <Tab4 />}
     </>
   );
 };

@@ -12,13 +12,14 @@ const useTabStore = create((set, get) => ({
       id: 1,
       type: 'select',
       label: 'select-label',
-      contents: ['옵션1', '옵션2'],
+      contents: ['5G', 'LTE'],
     },
   ],
+  // 탭 전환 데이터 유지
   savedContentsValue: [
     {
       inputName0: 'test',
-      selectName1: '옵션2',
+      selectName1: 'LTE',
     },
   ],
   setSavedTabContents: (data) => {
