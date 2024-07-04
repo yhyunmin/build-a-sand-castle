@@ -2,13 +2,29 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 type valueType = 'input' | 'select' | null;
+type InputType = {
+  label: string;
+  placeholder: string;
+  option: string;
+};
+type FormType = {
+  id: number;
+  type: valueType;
+  label: string;
+  placeholder: string;
+  option?: string;
+};
+type FormList = FormType[];
+
 const Build = () => {
-  const [_, setValue] = useState<valueType>(null);
+  const [value, setValue] = useState<valueType>(null);
+  const [formList, setFormList] = useState<FormList>([]);
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
-  } = useForm();
+  } = useForm<InputType>();
   return (
     <>
       <h1> 설문조사 폼 만들기 </h1>
@@ -22,7 +38,8 @@ const Build = () => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="label">질문 주제</label> <br />
-        <input type="text" {...register('label')} />
+        <input type="text" {...register('label', { required: true })} />
+        {errors.label && <span>{'  '}질문을 입력하셔야합니다.</span>}
         <br />
         <label htmlFor="placeholder">placeholder</label> <br />
         <input type="text" {...register('placeholder')} />
@@ -39,14 +56,29 @@ const Build = () => {
         <hr />
         <button>option 추가</button>
       </form>
+
+      <ul>
+        {formList.map((form) => (
+          <li key={form.id}>
+            {form.label} {form.placeholder} {form.type}
+          </li>
+        ))}
+      </ul>
     </>
   );
   function onChange(e) {
     setValue(e.target.value as valueType);
     console.log(e.target.value);
   }
-  function onSubmit(data) {
-    console.log(data);
+  function onSubmit({ label, placeholder }) {
+    console.log(label, placeholder);
+    const formData = {
+      id: 0,
+      type: value,
+      label,
+      placeholder,
+    };
+    setFormList([...formList, formData]);
   }
 };
 
