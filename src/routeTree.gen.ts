@@ -14,6 +14,8 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as SettingsImport } from './routes/settings'
+import { Route as ProfileImport } from './routes/profile'
+import { Route as FormImport } from './routes/form'
 import { Route as AgGridImport } from './routes/ag-grid'
 import { Route as WrapperImport } from './routes/_wrapper'
 import { Route as WathceslayoutImport } from './routes/_wathceslayout'
@@ -22,16 +24,24 @@ import { Route as IndexImport } from './routes/index'
 import { Route as TanstackQueryIndexImport } from './routes/tanstack-query/index'
 import { Route as TabsIndexImport } from './routes/tabs/index'
 import { Route as PostsIndexImport } from './routes/posts.index'
+import { Route as PokemonIndexImport } from './routes/pokemon/index'
 import { Route as LazyLoadingIndexImport } from './routes/lazy-loading/index'
+import { Route as FormIndexImport } from './routes/form/index'
 import { Route as DayjsIndexImport } from './routes/dayjs/index'
 import { Route as PostsDeepImport } from './routes/posts_.deep'
 import { Route as PostsPostIdImport } from './routes/posts.$postId'
+import { Route as PokemonIdImport } from './routes/pokemon/$id'
+import { Route as FormBuildImport } from './routes/form/build'
 import { Route as WrapperRolexImport } from './routes/_wrapper.rolex'
 import { Route as WatcheslayoutWatchesImport } from './routes/_watcheslayout.watches'
 import { Route as LayoutDogsImport } from './routes/_layout.dogs'
 import { Route as TabsMainIndexImport } from './routes/tabs/main/index'
+import { Route as FormListIndexImport } from './routes/form/list/index'
+import { Route as FormEditIndexImport } from './routes/form/edit/index'
 import { Route as BlogBlogIdIndexImport } from './routes/blog/$blogId/index'
 import { Route as AboutSettingsIndexImport } from './routes/about/settings/index'
+import { Route as FormListIdImport } from './routes/form/list/$id'
+import { Route as FormEditIdImport } from './routes/form/edit/$id'
 
 // Create Virtual Routes
 
@@ -41,6 +51,16 @@ const AboutIndexLazyImport = createFileRoute('/about/')()
 
 const SettingsRoute = SettingsImport.update({
   path: '/settings',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProfileRoute = ProfileImport.update({
+  path: '/profile',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FormRoute = FormImport.update({
+  path: '/form',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -89,9 +109,19 @@ const PostsIndexRoute = PostsIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const PokemonIndexRoute = PokemonIndexImport.update({
+  path: '/pokemon/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const LazyLoadingIndexRoute = LazyLoadingIndexImport.update({
   path: '/lazy-loading/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const FormIndexRoute = FormIndexImport.update({
+  path: '/',
+  getParentRoute: () => FormRoute,
 } as any)
 
 const DayjsIndexRoute = DayjsIndexImport.update({
@@ -107,6 +137,16 @@ const PostsDeepRoute = PostsDeepImport.update({
 const PostsPostIdRoute = PostsPostIdImport.update({
   path: '/posts/$postId',
   getParentRoute: () => rootRoute,
+} as any)
+
+const PokemonIdRoute = PokemonIdImport.update({
+  path: '/pokemon/$id',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FormBuildRoute = FormBuildImport.update({
+  path: '/build',
+  getParentRoute: () => FormRoute,
 } as any)
 
 const WrapperRolexRoute = WrapperRolexImport.update({
@@ -129,6 +169,16 @@ const TabsMainIndexRoute = TabsMainIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const FormListIndexRoute = FormListIndexImport.update({
+  path: '/list/',
+  getParentRoute: () => FormRoute,
+} as any)
+
+const FormEditIndexRoute = FormEditIndexImport.update({
+  path: '/edit/',
+  getParentRoute: () => FormRoute,
+} as any)
+
 const BlogBlogIdIndexRoute = BlogBlogIdIndexImport.update({
   path: '/blog/$blogId/',
   getParentRoute: () => rootRoute,
@@ -137,6 +187,16 @@ const BlogBlogIdIndexRoute = BlogBlogIdIndexImport.update({
 const AboutSettingsIndexRoute = AboutSettingsIndexImport.update({
   path: '/about/settings/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const FormListIdRoute = FormListIdImport.update({
+  path: '/list/$id',
+  getParentRoute: () => FormRoute,
+} as any)
+
+const FormEditIdRoute = FormEditIdImport.update({
+  path: '/edit/$id',
+  getParentRoute: () => FormRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -178,6 +238,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AgGridImport
       parentRoute: typeof rootRoute
     }
+    '/form': {
+      id: '/form'
+      path: '/form'
+      fullPath: '/form'
+      preLoaderRoute: typeof FormImport
+      parentRoute: typeof rootRoute
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileImport
+      parentRoute: typeof rootRoute
+    }
     '/settings': {
       id: '/settings'
       path: '/settings'
@@ -206,6 +280,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WrapperRolexImport
       parentRoute: typeof WrapperImport
     }
+    '/form/build': {
+      id: '/form/build'
+      path: '/build'
+      fullPath: '/form/build'
+      preLoaderRoute: typeof FormBuildImport
+      parentRoute: typeof FormImport
+    }
+    '/pokemon/$id': {
+      id: '/pokemon/$id'
+      path: '/pokemon/$id'
+      fullPath: '/pokemon/$id'
+      preLoaderRoute: typeof PokemonIdImport
+      parentRoute: typeof rootRoute
+    }
     '/posts/$postId': {
       id: '/posts/$postId'
       path: '/posts/$postId'
@@ -227,11 +315,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DayjsIndexImport
       parentRoute: typeof rootRoute
     }
+    '/form/': {
+      id: '/form/'
+      path: '/'
+      fullPath: '/form/'
+      preLoaderRoute: typeof FormIndexImport
+      parentRoute: typeof FormImport
+    }
     '/lazy-loading/': {
       id: '/lazy-loading/'
       path: '/lazy-loading/'
       fullPath: '/lazy-loading/'
       preLoaderRoute: typeof LazyLoadingIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/pokemon/': {
+      id: '/pokemon/'
+      path: '/pokemon/'
+      fullPath: '/pokemon/'
+      preLoaderRoute: typeof PokemonIndexImport
       parentRoute: typeof rootRoute
     }
     '/posts/': {
@@ -262,6 +364,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutIndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/form/edit/$id': {
+      id: '/form/edit/$id'
+      path: '/edit/$id'
+      fullPath: '/form/edit/$id'
+      preLoaderRoute: typeof FormEditIdImport
+      parentRoute: typeof FormImport
+    }
+    '/form/list/$id': {
+      id: '/form/list/$id'
+      path: '/list/$id'
+      fullPath: '/form/list/$id'
+      preLoaderRoute: typeof FormListIdImport
+      parentRoute: typeof FormImport
+    }
     '/about/settings/': {
       id: '/about/settings/'
       path: '/about/settings/'
@@ -275,6 +391,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/blog/$blogId/'
       preLoaderRoute: typeof BlogBlogIdIndexImport
       parentRoute: typeof rootRoute
+    }
+    '/form/edit/': {
+      id: '/form/edit/'
+      path: '/edit/'
+      fullPath: '/form/edit/'
+      preLoaderRoute: typeof FormEditIndexImport
+      parentRoute: typeof FormImport
+    }
+    '/form/list/': {
+      id: '/form/list/'
+      path: '/list/'
+      fullPath: '/form/list/'
+      preLoaderRoute: typeof FormListIndexImport
+      parentRoute: typeof FormImport
     }
     '/tabs/main/': {
       id: '/tabs/main/'
@@ -293,12 +423,23 @@ export const routeTree = rootRoute.addChildren({
   LayoutRoute: LayoutRoute.addChildren({ LayoutDogsRoute }),
   WrapperRoute: WrapperRoute.addChildren({ WrapperRolexRoute }),
   AgGridRoute,
+  FormRoute: FormRoute.addChildren({
+    FormBuildRoute,
+    FormIndexRoute,
+    FormEditIdRoute,
+    FormListIdRoute,
+    FormEditIndexRoute,
+    FormListIndexRoute,
+  }),
+  ProfileRoute,
   SettingsRoute,
   WatcheslayoutWatchesRoute,
+  PokemonIdRoute,
   PostsPostIdRoute,
   PostsDeepRoute,
   DayjsIndexRoute,
   LazyLoadingIndexRoute,
+  PokemonIndexRoute,
   PostsIndexRoute,
   TabsIndexRoute,
   TanstackQueryIndexRoute,

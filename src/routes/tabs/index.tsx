@@ -1,5 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { Tab } from '../../apps/_tab';
+import { createFileRoute, Outlet } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/tabs/')({
   component: Main,
@@ -11,7 +10,7 @@ function Main() {
   //TODO tabs1 에서 만들어진 input 과 select을 reactHookform 과 zod 이용해서 validation 및 에러 핸들링하기
   return (
     <>
-      <Tab />
+      <Outlet />
     </>
   );
 }

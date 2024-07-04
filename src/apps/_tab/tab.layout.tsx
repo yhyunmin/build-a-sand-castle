@@ -15,13 +15,7 @@ const tab = () => {
   return (
     <>
       <h1>form 생성 기능</h1>
-      <div>
-        <button onClick={() => setPage('main')}>Main</button>
-        <button onClick={() => setPage('tab1')}>Tab1</button>
-        <button onClick={() => setPage('tab2')}>Tab2(FOMRDATA사용) </button>
-        <button onClick={() => setPage('tab3')}>Tab3(REF사용)</button>
-        <button onClick={() => setPage('tab4')}>Tab4(리액트훅폼사용)</button>
-      </div>
+
       {/*쿼리스트링으로 바꾸기 */}
       {page === 'main' && <Main />}
       {page === 'tab1' && <Tab1 />}
