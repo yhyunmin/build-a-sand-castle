@@ -14,6 +14,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as SettingsImport } from './routes/settings'
+import { Route as SearchImport } from './routes/search'
 import { Route as ProfileImport } from './routes/profile'
 import { Route as FormImport } from './routes/form'
 import { Route as AgGridImport } from './routes/ag-grid'
@@ -51,6 +52,11 @@ const AboutIndexLazyImport = createFileRoute('/about/')()
 
 const SettingsRoute = SettingsImport.update({
   path: '/settings',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SearchRoute = SearchImport.update({
+  path: '/search',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -252,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileImport
       parentRoute: typeof rootRoute
     }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchImport
+      parentRoute: typeof rootRoute
+    }
     '/settings': {
       id: '/settings'
       path: '/settings'
@@ -432,6 +445,7 @@ export const routeTree = rootRoute.addChildren({
     FormListIndexRoute,
   }),
   ProfileRoute,
+  SearchRoute,
   SettingsRoute,
   WatcheslayoutWatchesRoute,
   PokemonIdRoute,

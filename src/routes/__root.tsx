@@ -65,6 +65,9 @@ function RootComponent() {
         >
           Form
         </Link>
+        <Link to="/search" activeProps={activeProps}>
+          Search
+        </Link>
       </nav>
       <hr />
       <Outlet />

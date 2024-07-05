@@ -1,24 +1,45 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useFormState } from 'react-hook-form';
+import useFormStore from '../store/useFormStore.ts';
+import { useShallow } from 'zustand/react/shallow';
 
-type valueType = 'input' | 'select' | null;
+type valueType = 'input' | 'select' | '';
+
+type FormKeyType = string | number | valueType;
+
+// Record로 바꿔보기
+// type InputKeyType = 'label' | 'placeholder' | 'option' | 'id' | 'type';
+
 type InputType = {
   label: string;
-  placeholder: string;
-  option: string;
-};
-type FormType = {
-  id: number;
-  type: valueType;
-  label: string;
-  placeholder: string;
+  placeholder?: string;
   option?: string;
 };
+
+export type FormType = InputType & {
+  id: number;
+  type: valueType;
+};
+
+export type FormType2 = Record<string, FormKeyType>;
 type FormList = FormType[];
 
 const Build = () => {
-  const [value, setValue] = useState<valueType>(null);
-  const [formList, setFormList] = useState<FormList>([]);
+  const [value, setValue] = useState<valueType>('');
+  // const [formList, setFormList] = useState<FormList>([]);
+  // const formList = useFormStore((state) => state.formList);
+  // const { formList, setFormList } = useFormStore(
+  //   (state) => ({
+  //     formList: state.formList,
+  //     setFormList: state.action.setFormList,
+  //   }),
+  //   shallow,
+  // );
+  // 리렌더링 방지(최적화를 위한)
+  // shallow 보단 useShallow 를 권장 (최신)
+  const { formList, setFormList } = useFormStore(
+    useShallow((state) => (state.store.formList, state.action.setFormList)),
+  );
   const {
     register,
     handleSubmit,
@@ -35,7 +56,6 @@ const Build = () => {
         <label htmlFor="selector2"> select 만들기</label>
       </form>
       <hr />
-
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="label">질문 주제</label> <br />
         <input type="text" {...register('label', { required: true })} />
@@ -72,7 +92,7 @@ const Build = () => {
   }
   function onSubmit({ label, placeholder }) {
     console.log(label, placeholder);
-    const formData = {
+    const formData: FormType2 = {
       id: 0,
       type: value,
       label,
