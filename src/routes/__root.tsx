@@ -65,9 +65,14 @@ function RootComponent() {
         >
           Form
         </Link>
-        <Link to="/search" activeProps={activeProps}>
+        <Link
+          to="/search"
+          activeProps={activeProps}
+          style={{ marginLeft: '10px' }}
+        >
           Search
         </Link>
+        {/*  search={(prev) => ({ page: prev.page + 1 })} <다음페이지 버튼같은건 이런식으루 만듬 */}
       </nav>
       <hr />
       <Outlet />

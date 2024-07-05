@@ -323,8 +323,8 @@ declare module '@tanstack/react-router' {
     }
     '/dayjs/': {
       id: '/dayjs/'
-      path: '/dayjs/'
-      fullPath: '/dayjs/'
+      path: '/dayjs'
+      fullPath: '/dayjs'
       preLoaderRoute: typeof DayjsIndexImport
       parentRoute: typeof rootRoute
     }
@@ -337,43 +337,43 @@ declare module '@tanstack/react-router' {
     }
     '/lazy-loading/': {
       id: '/lazy-loading/'
-      path: '/lazy-loading/'
-      fullPath: '/lazy-loading/'
+      path: '/lazy-loading'
+      fullPath: '/lazy-loading'
       preLoaderRoute: typeof LazyLoadingIndexImport
       parentRoute: typeof rootRoute
     }
     '/pokemon/': {
       id: '/pokemon/'
-      path: '/pokemon/'
-      fullPath: '/pokemon/'
+      path: '/pokemon'
+      fullPath: '/pokemon'
       preLoaderRoute: typeof PokemonIndexImport
       parentRoute: typeof rootRoute
     }
     '/posts/': {
       id: '/posts/'
-      path: '/posts/'
-      fullPath: '/posts/'
+      path: '/posts'
+      fullPath: '/posts'
       preLoaderRoute: typeof PostsIndexImport
       parentRoute: typeof rootRoute
     }
     '/tabs/': {
       id: '/tabs/'
-      path: '/tabs/'
-      fullPath: '/tabs/'
+      path: '/tabs'
+      fullPath: '/tabs'
       preLoaderRoute: typeof TabsIndexImport
       parentRoute: typeof rootRoute
     }
     '/tanstack-query/': {
       id: '/tanstack-query/'
-      path: '/tanstack-query/'
-      fullPath: '/tanstack-query/'
+      path: '/tanstack-query'
+      fullPath: '/tanstack-query'
       preLoaderRoute: typeof TanstackQueryIndexImport
       parentRoute: typeof rootRoute
     }
     '/about/': {
       id: '/about/'
-      path: '/about/'
-      fullPath: '/about/'
+      path: '/about'
+      fullPath: '/about'
       preLoaderRoute: typeof AboutIndexLazyImport
       parentRoute: typeof rootRoute
     }
@@ -393,36 +393,36 @@ declare module '@tanstack/react-router' {
     }
     '/about/settings/': {
       id: '/about/settings/'
-      path: '/about/settings/'
-      fullPath: '/about/settings/'
+      path: '/about/settings'
+      fullPath: '/about/settings'
       preLoaderRoute: typeof AboutSettingsIndexImport
       parentRoute: typeof rootRoute
     }
     '/blog/$blogId/': {
       id: '/blog/$blogId/'
-      path: '/blog/$blogId/'
-      fullPath: '/blog/$blogId/'
+      path: '/blog/$blogId'
+      fullPath: '/blog/$blogId'
       preLoaderRoute: typeof BlogBlogIdIndexImport
       parentRoute: typeof rootRoute
     }
     '/form/edit/': {
       id: '/form/edit/'
-      path: '/edit/'
-      fullPath: '/form/edit/'
+      path: '/edit'
+      fullPath: '/form/edit'
       preLoaderRoute: typeof FormEditIndexImport
       parentRoute: typeof FormImport
     }
     '/form/list/': {
       id: '/form/list/'
-      path: '/list/'
-      fullPath: '/form/list/'
+      path: '/list'
+      fullPath: '/form/list'
       preLoaderRoute: typeof FormListIndexImport
       parentRoute: typeof FormImport
     }
     '/tabs/main/': {
       id: '/tabs/main/'
-      path: '/tabs/main/'
-      fullPath: '/tabs/main/'
+      path: '/tabs/main'
+      fullPath: '/tabs/main'
       preLoaderRoute: typeof TabsMainIndexImport
       parentRoute: typeof rootRoute
     }
@@ -464,3 +464,153 @@ export const routeTree = rootRoute.addChildren({
 })
 
 /* prettier-ignore-end */
+
+/* ROUTE_MANIFEST_START
+{
+  "routes": {
+    "__root__": {
+      "filePath": "__root.tsx",
+      "children": [
+        "/",
+        "/_layout",
+        "/_wathceslayout",
+        "/_wrapper",
+        "/ag-grid",
+        "/form",
+        "/profile",
+        "/search",
+        "/settings",
+        "/_watcheslayout/watches",
+        "/pokemon/$id",
+        "/posts/$postId",
+        "/posts/deep",
+        "/dayjs/",
+        "/lazy-loading/",
+        "/pokemon/",
+        "/posts/",
+        "/tabs/",
+        "/tanstack-query/",
+        "/about/",
+        "/about/settings/",
+        "/blog/$blogId/",
+        "/tabs/main/"
+      ]
+    },
+    "/": {
+      "filePath": "index.tsx"
+    },
+    "/_layout": {
+      "filePath": "_layout.tsx",
+      "children": [
+        "/_layout/dogs"
+      ]
+    },
+    "/_wathceslayout": {
+      "filePath": "_wathceslayout.tsx"
+    },
+    "/_wrapper": {
+      "filePath": "_wrapper.tsx",
+      "children": [
+        "/_wrapper/rolex"
+      ]
+    },
+    "/ag-grid": {
+      "filePath": "ag-grid.tsx"
+    },
+    "/form": {
+      "filePath": "form.tsx",
+      "children": [
+        "/form/build",
+        "/form/",
+        "/form/edit/$id",
+        "/form/list/$id",
+        "/form/edit/",
+        "/form/list/"
+      ]
+    },
+    "/profile": {
+      "filePath": "profile.tsx"
+    },
+    "/search": {
+      "filePath": "search.tsx"
+    },
+    "/settings": {
+      "filePath": "settings.tsx"
+    },
+    "/_layout/dogs": {
+      "filePath": "_layout.dogs.tsx",
+      "parent": "/_layout"
+    },
+    "/_watcheslayout/watches": {
+      "filePath": "_watcheslayout.watches.tsx"
+    },
+    "/_wrapper/rolex": {
+      "filePath": "_wrapper.rolex.tsx",
+      "parent": "/_wrapper"
+    },
+    "/form/build": {
+      "filePath": "form/build.tsx",
+      "parent": "/form"
+    },
+    "/pokemon/$id": {
+      "filePath": "pokemon/$id.tsx"
+    },
+    "/posts/$postId": {
+      "filePath": "posts.$postId.tsx"
+    },
+    "/posts/deep": {
+      "filePath": "posts_.deep.tsx"
+    },
+    "/dayjs/": {
+      "filePath": "dayjs/index.tsx"
+    },
+    "/form/": {
+      "filePath": "form/index.tsx",
+      "parent": "/form"
+    },
+    "/lazy-loading/": {
+      "filePath": "lazy-loading/index.tsx"
+    },
+    "/pokemon/": {
+      "filePath": "pokemon/index.tsx"
+    },
+    "/posts/": {
+      "filePath": "posts.index.tsx"
+    },
+    "/tabs/": {
+      "filePath": "tabs/index.tsx"
+    },
+    "/tanstack-query/": {
+      "filePath": "tanstack-query/index.tsx"
+    },
+    "/about/": {
+      "filePath": "about/index.lazy.tsx"
+    },
+    "/form/edit/$id": {
+      "filePath": "form/edit/$id.tsx",
+      "parent": "/form"
+    },
+    "/form/list/$id": {
+      "filePath": "form/list/$id.tsx",
+      "parent": "/form"
+    },
+    "/about/settings/": {
+      "filePath": "about/settings/index.tsx"
+    },
+    "/blog/$blogId/": {
+      "filePath": "blog/$blogId/index.tsx"
+    },
+    "/form/edit/": {
+      "filePath": "form/edit/index.tsx",
+      "parent": "/form"
+    },
+    "/form/list/": {
+      "filePath": "form/list/index.tsx",
+      "parent": "/form"
+    },
+    "/tabs/main/": {
+      "filePath": "tabs/main/index.tsx"
+    }
+  }
+}
+ROUTE_MANIFEST_END */
