@@ -50,13 +50,27 @@ import {
 // tsr generate 가 라우트 트리를 자동 생성
 import { routeTree } from './routeTree.gen.ts';
 import NavigationHeader from './NavigationHeader.tsx';
+import { useAuth } from './hooks/useAuth.ts';
 
 export const rootRoute = createRootRoute({
   component: NavigationHeader,
 });
 
 const router = createRouter({ routeTree });
+// context 추가를 위한 createRouter 인자 추가
+const router2 = createRouter({
+  routeTree,
+  // 초기 라우터
+  context: {
+    authentication: undefined!, // 정의되어있다라는 non-null 연산자
+  },
+});
 
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router;
+  }
+}
 const rootElement = document.getElementById('root')!;
 
 async function enableMocking() {
@@ -69,7 +83,16 @@ async function enableMocking() {
 
 enableMocking().then(() => {
   if (!rootElement.innerHTML) {
+    // const { signIn, signOut, isAuthenticated } = useAuth();
+    const authentication = useAuth();
     const root = ReactDOM.createRoot(rootElement);
-    root.render(<RouterProvider router={router} />);
+    // root.render(<RouterProvider router={router} />);
+    root.render(
+      <RouterProvider router={router2} context={{ authentication }} />,
+    );
   }
 });
+
+// context 활용법
+// createRouter 에 초기값 Context 넣기
+// RouterProvider 에 context 넣기

@@ -16,7 +16,9 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as SettingsImport } from './routes/settings'
 import { Route as SearchImport } from './routes/search'
 import { Route as ProfileImport } from './routes/profile'
+import { Route as LoginImport } from './routes/login'
 import { Route as FormImport } from './routes/form'
+import { Route as AuthenticatedImport } from './routes/authenticated'
 import { Route as AgGridImport } from './routes/ag-grid'
 import { Route as WrapperImport } from './routes/_wrapper'
 import { Route as WathceslayoutImport } from './routes/_wathceslayout'
@@ -36,6 +38,8 @@ import { Route as FormBuildImport } from './routes/form/build'
 import { Route as WrapperRolexImport } from './routes/_wrapper.rolex'
 import { Route as WatcheslayoutWatchesImport } from './routes/_watcheslayout.watches'
 import { Route as LayoutDogsImport } from './routes/_layout.dogs'
+import { Route as AuthenticatedSettingsImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedDashboardImport } from './routes/_authenticated/dashboard'
 import { Route as TabsMainIndexImport } from './routes/tabs/main/index'
 import { Route as FormListIndexImport } from './routes/form/list/index'
 import { Route as FormEditIndexImport } from './routes/form/edit/index'
@@ -65,8 +69,18 @@ const ProfileRoute = ProfileImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const LoginRoute = LoginImport.update({
+  path: '/login',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const FormRoute = FormImport.update({
   path: '/form',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthenticatedRoute = AuthenticatedImport.update({
+  path: '/authenticated',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -170,6 +184,16 @@ const LayoutDogsRoute = LayoutDogsImport.update({
   getParentRoute: () => LayoutRoute,
 } as any)
 
+const AuthenticatedSettingsRoute = AuthenticatedSettingsImport.update({
+  path: '/settings',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthenticatedDashboardRoute = AuthenticatedDashboardImport.update({
+  path: '/dashboard',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const TabsMainIndexRoute = TabsMainIndexImport.update({
   path: '/tabs/main/',
   getParentRoute: () => rootRoute,
@@ -244,11 +268,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AgGridImport
       parentRoute: typeof rootRoute
     }
+    '/authenticated': {
+      id: '/authenticated'
+      path: '/authenticated'
+      fullPath: '/authenticated'
+      preLoaderRoute: typeof AuthenticatedImport
+      parentRoute: typeof rootRoute
+    }
     '/form': {
       id: '/form'
       path: '/form'
       fullPath: '/form'
       preLoaderRoute: typeof FormImport
+      parentRoute: typeof rootRoute
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginImport
       parentRoute: typeof rootRoute
     }
     '/profile': {
@@ -270,6 +308,20 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof SettingsImport
+      parentRoute: typeof rootRoute
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardImport
+      parentRoute: typeof rootRoute
+    }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsImport
       parentRoute: typeof rootRoute
     }
     '/_layout/dogs': {
@@ -323,8 +375,8 @@ declare module '@tanstack/react-router' {
     }
     '/dayjs/': {
       id: '/dayjs/'
-      path: '/dayjs'
-      fullPath: '/dayjs'
+      path: '/dayjs/'
+      fullPath: '/dayjs/'
       preLoaderRoute: typeof DayjsIndexImport
       parentRoute: typeof rootRoute
     }
@@ -337,43 +389,43 @@ declare module '@tanstack/react-router' {
     }
     '/lazy-loading/': {
       id: '/lazy-loading/'
-      path: '/lazy-loading'
-      fullPath: '/lazy-loading'
+      path: '/lazy-loading/'
+      fullPath: '/lazy-loading/'
       preLoaderRoute: typeof LazyLoadingIndexImport
       parentRoute: typeof rootRoute
     }
     '/pokemon/': {
       id: '/pokemon/'
-      path: '/pokemon'
-      fullPath: '/pokemon'
+      path: '/pokemon/'
+      fullPath: '/pokemon/'
       preLoaderRoute: typeof PokemonIndexImport
       parentRoute: typeof rootRoute
     }
     '/posts/': {
       id: '/posts/'
-      path: '/posts'
-      fullPath: '/posts'
+      path: '/posts/'
+      fullPath: '/posts/'
       preLoaderRoute: typeof PostsIndexImport
       parentRoute: typeof rootRoute
     }
     '/tabs/': {
       id: '/tabs/'
-      path: '/tabs'
-      fullPath: '/tabs'
+      path: '/tabs/'
+      fullPath: '/tabs/'
       preLoaderRoute: typeof TabsIndexImport
       parentRoute: typeof rootRoute
     }
     '/tanstack-query/': {
       id: '/tanstack-query/'
-      path: '/tanstack-query'
-      fullPath: '/tanstack-query'
+      path: '/tanstack-query/'
+      fullPath: '/tanstack-query/'
       preLoaderRoute: typeof TanstackQueryIndexImport
       parentRoute: typeof rootRoute
     }
     '/about/': {
       id: '/about/'
-      path: '/about'
-      fullPath: '/about'
+      path: '/about/'
+      fullPath: '/about/'
       preLoaderRoute: typeof AboutIndexLazyImport
       parentRoute: typeof rootRoute
     }
@@ -393,36 +445,36 @@ declare module '@tanstack/react-router' {
     }
     '/about/settings/': {
       id: '/about/settings/'
-      path: '/about/settings'
-      fullPath: '/about/settings'
+      path: '/about/settings/'
+      fullPath: '/about/settings/'
       preLoaderRoute: typeof AboutSettingsIndexImport
       parentRoute: typeof rootRoute
     }
     '/blog/$blogId/': {
       id: '/blog/$blogId/'
-      path: '/blog/$blogId'
-      fullPath: '/blog/$blogId'
+      path: '/blog/$blogId/'
+      fullPath: '/blog/$blogId/'
       preLoaderRoute: typeof BlogBlogIdIndexImport
       parentRoute: typeof rootRoute
     }
     '/form/edit/': {
       id: '/form/edit/'
-      path: '/edit'
-      fullPath: '/form/edit'
+      path: '/edit/'
+      fullPath: '/form/edit/'
       preLoaderRoute: typeof FormEditIndexImport
       parentRoute: typeof FormImport
     }
     '/form/list/': {
       id: '/form/list/'
-      path: '/list'
-      fullPath: '/form/list'
+      path: '/list/'
+      fullPath: '/form/list/'
       preLoaderRoute: typeof FormListIndexImport
       parentRoute: typeof FormImport
     }
     '/tabs/main/': {
       id: '/tabs/main/'
-      path: '/tabs/main'
-      fullPath: '/tabs/main'
+      path: '/tabs/main/'
+      fullPath: '/tabs/main/'
       preLoaderRoute: typeof TabsMainIndexImport
       parentRoute: typeof rootRoute
     }
@@ -436,6 +488,7 @@ export const routeTree = rootRoute.addChildren({
   LayoutRoute: LayoutRoute.addChildren({ LayoutDogsRoute }),
   WrapperRoute: WrapperRoute.addChildren({ WrapperRolexRoute }),
   AgGridRoute,
+  AuthenticatedRoute,
   FormRoute: FormRoute.addChildren({
     FormBuildRoute,
     FormIndexRoute,
@@ -444,9 +497,12 @@ export const routeTree = rootRoute.addChildren({
     FormEditIndexRoute,
     FormListIndexRoute,
   }),
+  LoginRoute,
   ProfileRoute,
   SearchRoute,
   SettingsRoute,
+  AuthenticatedDashboardRoute,
+  AuthenticatedSettingsRoute,
   WatcheslayoutWatchesRoute,
   PokemonIdRoute,
   PostsPostIdRoute,
@@ -464,153 +520,3 @@ export const routeTree = rootRoute.addChildren({
 })
 
 /* prettier-ignore-end */
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/_layout",
-        "/_wathceslayout",
-        "/_wrapper",
-        "/ag-grid",
-        "/form",
-        "/profile",
-        "/search",
-        "/settings",
-        "/_watcheslayout/watches",
-        "/pokemon/$id",
-        "/posts/$postId",
-        "/posts/deep",
-        "/dayjs/",
-        "/lazy-loading/",
-        "/pokemon/",
-        "/posts/",
-        "/tabs/",
-        "/tanstack-query/",
-        "/about/",
-        "/about/settings/",
-        "/blog/$blogId/",
-        "/tabs/main/"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/_layout": {
-      "filePath": "_layout.tsx",
-      "children": [
-        "/_layout/dogs"
-      ]
-    },
-    "/_wathceslayout": {
-      "filePath": "_wathceslayout.tsx"
-    },
-    "/_wrapper": {
-      "filePath": "_wrapper.tsx",
-      "children": [
-        "/_wrapper/rolex"
-      ]
-    },
-    "/ag-grid": {
-      "filePath": "ag-grid.tsx"
-    },
-    "/form": {
-      "filePath": "form.tsx",
-      "children": [
-        "/form/build",
-        "/form/",
-        "/form/edit/$id",
-        "/form/list/$id",
-        "/form/edit/",
-        "/form/list/"
-      ]
-    },
-    "/profile": {
-      "filePath": "profile.tsx"
-    },
-    "/search": {
-      "filePath": "search.tsx"
-    },
-    "/settings": {
-      "filePath": "settings.tsx"
-    },
-    "/_layout/dogs": {
-      "filePath": "_layout.dogs.tsx",
-      "parent": "/_layout"
-    },
-    "/_watcheslayout/watches": {
-      "filePath": "_watcheslayout.watches.tsx"
-    },
-    "/_wrapper/rolex": {
-      "filePath": "_wrapper.rolex.tsx",
-      "parent": "/_wrapper"
-    },
-    "/form/build": {
-      "filePath": "form/build.tsx",
-      "parent": "/form"
-    },
-    "/pokemon/$id": {
-      "filePath": "pokemon/$id.tsx"
-    },
-    "/posts/$postId": {
-      "filePath": "posts.$postId.tsx"
-    },
-    "/posts/deep": {
-      "filePath": "posts_.deep.tsx"
-    },
-    "/dayjs/": {
-      "filePath": "dayjs/index.tsx"
-    },
-    "/form/": {
-      "filePath": "form/index.tsx",
-      "parent": "/form"
-    },
-    "/lazy-loading/": {
-      "filePath": "lazy-loading/index.tsx"
-    },
-    "/pokemon/": {
-      "filePath": "pokemon/index.tsx"
-    },
-    "/posts/": {
-      "filePath": "posts.index.tsx"
-    },
-    "/tabs/": {
-      "filePath": "tabs/index.tsx"
-    },
-    "/tanstack-query/": {
-      "filePath": "tanstack-query/index.tsx"
-    },
-    "/about/": {
-      "filePath": "about/index.lazy.tsx"
-    },
-    "/form/edit/$id": {
-      "filePath": "form/edit/$id.tsx",
-      "parent": "/form"
-    },
-    "/form/list/$id": {
-      "filePath": "form/list/$id.tsx",
-      "parent": "/form"
-    },
-    "/about/settings/": {
-      "filePath": "about/settings/index.tsx"
-    },
-    "/blog/$blogId/": {
-      "filePath": "blog/$blogId/index.tsx"
-    },
-    "/form/edit/": {
-      "filePath": "form/edit/index.tsx",
-      "parent": "/form"
-    },
-    "/form/list/": {
-      "filePath": "form/list/index.tsx",
-      "parent": "/form"
-    },
-    "/tabs/main/": {
-      "filePath": "tabs/main/index.tsx"
-    }
-  }
-}
-ROUTE_MANIFEST_END */

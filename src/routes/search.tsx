@@ -1,4 +1,4 @@
-import { createFileRoute, Router, useNavigate } from '@tanstack/react-router';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 
 // zod 이용해 validation 및 변경하기
 type ItemFilters = {
