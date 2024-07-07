@@ -18,11 +18,11 @@ import { Route as SearchImport } from './routes/search'
 import { Route as ProfileImport } from './routes/profile'
 import { Route as LoginImport } from './routes/login'
 import { Route as FormImport } from './routes/form'
-import { Route as AuthenticatedImport } from './routes/authenticated'
 import { Route as AgGridImport } from './routes/ag-grid'
 import { Route as WrapperImport } from './routes/_wrapper'
 import { Route as WathceslayoutImport } from './routes/_wathceslayout'
 import { Route as LayoutImport } from './routes/_layout'
+import { Route as AuthenticatedImport } from './routes/_authenticated'
 import { Route as IndexImport } from './routes/index'
 import { Route as TanstackQueryIndexImport } from './routes/tanstack-query/index'
 import { Route as TabsIndexImport } from './routes/tabs/index'
@@ -79,11 +79,6 @@ const FormRoute = FormImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const AuthenticatedRoute = AuthenticatedImport.update({
-  path: '/authenticated',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const AgGridRoute = AgGridImport.update({
   path: '/ag-grid',
   getParentRoute: () => rootRoute,
@@ -101,6 +96,11 @@ const WathceslayoutRoute = WathceslayoutImport.update({
 
 const LayoutRoute = LayoutImport.update({
   id: '/_layout',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthenticatedRoute = AuthenticatedImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -186,12 +186,12 @@ const LayoutDogsRoute = LayoutDogsImport.update({
 
 const AuthenticatedSettingsRoute = AuthenticatedSettingsImport.update({
   path: '/settings',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => AuthenticatedRoute,
 } as any)
 
 const AuthenticatedDashboardRoute = AuthenticatedDashboardImport.update({
   path: '/dashboard',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => AuthenticatedRoute,
 } as any)
 
 const TabsMainIndexRoute = TabsMainIndexImport.update({
@@ -240,6 +240,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthenticatedImport
+      parentRoute: typeof rootRoute
+    }
     '/_layout': {
       id: '/_layout'
       path: ''
@@ -266,13 +273,6 @@ declare module '@tanstack/react-router' {
       path: '/ag-grid'
       fullPath: '/ag-grid'
       preLoaderRoute: typeof AgGridImport
-      parentRoute: typeof rootRoute
-    }
-    '/authenticated': {
-      id: '/authenticated'
-      path: '/authenticated'
-      fullPath: '/authenticated'
-      preLoaderRoute: typeof AuthenticatedImport
       parentRoute: typeof rootRoute
     }
     '/form': {
@@ -315,14 +315,14 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof AuthenticatedDashboardImport
-      parentRoute: typeof rootRoute
+      parentRoute: typeof AuthenticatedImport
     }
     '/_authenticated/settings': {
       id: '/_authenticated/settings'
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof AuthenticatedSettingsImport
-      parentRoute: typeof rootRoute
+      parentRoute: typeof AuthenticatedImport
     }
     '/_layout/dogs': {
       id: '/_layout/dogs'
@@ -485,10 +485,13 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
+  AuthenticatedRoute: AuthenticatedRoute.addChildren({
+    AuthenticatedDashboardRoute,
+    AuthenticatedSettingsRoute,
+  }),
   LayoutRoute: LayoutRoute.addChildren({ LayoutDogsRoute }),
   WrapperRoute: WrapperRoute.addChildren({ WrapperRolexRoute }),
   AgGridRoute,
-  AuthenticatedRoute,
   FormRoute: FormRoute.addChildren({
     FormBuildRoute,
     FormIndexRoute,
@@ -501,8 +504,6 @@ export const routeTree = rootRoute.addChildren({
   ProfileRoute,
   SearchRoute,
   SettingsRoute,
-  AuthenticatedDashboardRoute,
-  AuthenticatedSettingsRoute,
   WatcheslayoutWatchesRoute,
   PokemonIdRoute,
   PostsPostIdRoute,

@@ -56,7 +56,7 @@ export const rootRoute = createRootRoute({
   component: NavigationHeader,
 });
 
-const router = createRouter({ routeTree });
+// const router = createRouter({ routeTree });
 // context 추가를 위한 createRouter 인자 추가
 const router2 = createRouter({
   routeTree,
@@ -71,13 +71,14 @@ declare module '@tanstack/react-router' {
     router: typeof router;
   }
 }
+
 const rootElement = document.getElementById('root')!;
 
 async function enableMocking() {
   if (process.env.NODE_ENV !== 'development') {
     return;
   }
-  const { worker } = await import('./mocks/worker.js');
+  const { worker } = await import('./mocks/worker.ts');
   return worker.start();
 }
 
