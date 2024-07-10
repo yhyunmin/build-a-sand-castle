@@ -36,7 +36,7 @@ function RootComponent() {
           Home
         </Link>
         <Link
-          to={'/dayjs/'}
+          to={'/dayjs'}
           style={{ marginLeft: '10px' }}
           activeProps={activeProps}
         >
@@ -50,21 +50,21 @@ function RootComponent() {
           AG-grid
         </Link>
         <Link
-          to={'/lazy-loading/'}
+          to={'/lazy-loading'}
           style={{ marginLeft: '10px' }}
           activeProps={activeProps}
         >
           lazy-loading
         </Link>
         <Link
-          to={'/tabs/'}
+          to={'/tabs'}
           style={{ marginLeft: '10px' }}
           activeProps={{ style: { color: 'red' } }}
         >
           tabs
         </Link>
         <Link
-          to="/pokemon/"
+          to="/pokemon"
           activeProps={activeProps}
           style={{ marginLeft: '10px' }}
         >
@@ -93,9 +93,26 @@ function RootComponent() {
         >
           Login
         </Link>
-        <Link to={'/dashboard'}>DASHBOARD</Link>
-        <Link to={'/settings'} activeProps={activeProps}>
+        <Link
+          to={'/dashboard'}
+          style={{ marginLeft: '10px' }}
+          activeProps={activeProps}
+        >
+          DASHBOARD
+        </Link>
+        <Link
+          to={'/settings'}
+          style={{ marginLeft: '10px' }}
+          activeProps={activeProps}
+        >
           Settings
+        </Link>
+        <Link
+          to={'/shadcn'}
+          style={{ marginLeft: '10px' }}
+          activeProps={activeProps}
+        >
+          shadcn
         </Link>
       </nav>
       <hr />
