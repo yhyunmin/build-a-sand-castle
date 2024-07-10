@@ -8,11 +8,12 @@ import {
 } from '@/apps/components/ui/card.tsx';
 import { Button } from '@/apps/components/ui/button.tsx';
 import { Input } from '@/apps/components/ui/input.tsx';
+// import '/styles/global.css';
 
-const Basic = () => {
+const BaseCard = () => {
   return (
     <>
-      <Card className="max-w-md bg-teal-50 rounded-xl">
+      <Card className="bg-zinc-50 dark:bg-white">
         <CardHeader>
           <CardTitle>Basic</CardTitle>
           <CardDescription>ShadcnUI/Basic Component</CardDescription>
@@ -32,4 +33,4 @@ const Basic = () => {
     </>
   );
 };
-export default Basic;
+export default BaseCard;

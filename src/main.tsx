@@ -53,8 +53,8 @@ import NavigationHeader from './NavigationHeader.tsx';
 import { useAuth } from './hooks/useAuth.ts';
 
 //tailwind import
-
 import '@/styles/global.css';
+
 export const rootRoute = createRootRoute({
   component: NavigationHeader,
 });
