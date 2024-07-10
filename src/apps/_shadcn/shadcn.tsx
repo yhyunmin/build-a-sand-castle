@@ -3,6 +3,9 @@ import BaseAccordion from '@/apps/_shadcn/components/BaseAccordion.tsx';
 import BaseAlert from '@/apps/_shadcn/components/BaseAlert.tsx';
 import BaseAlertDialog from '@/apps/_shadcn/components/BaseAlertDialog.tsx';
 import { BaseImage } from '@/apps/_shadcn/components/BaseImage.tsx';
+import BaseAvatar from '@/apps/_shadcn/components/BaseAvatar.tsx';
+import BaseBadge from '@/apps/_shadcn/components/BaseBadge.tsx';
+import BaseBreadcrumb from '@/apps/_shadcn/components/BaseBreadcrumb.tsx';
 
 export const Shadcn = () => {
   return (
@@ -40,6 +43,15 @@ export const Shadcn = () => {
       />
       <br />
       <hr />
+      <h2>Avatar</h2>
+      <BaseAvatar />
+      <br />
+      <hr />
+      <h2>Badge</h2>
+      <BaseBadge />
+      <br />
+      <hr />
+      <BaseBreadcrumb />
     </>
   );
 };
