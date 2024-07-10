@@ -150,6 +150,12 @@ api의 createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같
 ` lazy image loading=>tanstack-query => Auth.js`
 
 ## 6.tailwind
+>  shadcnUI 로 작업하기
+
+    1. npx shadcn-ui@latest init (초기화작업)
+    2. global.css 에 `@tailwind base, @tailwind components @tailwind utilities 추가
+    3. @layer base 를 통해 클래스 커스터마이징 
+    4. npx shadcn-ui@latest add (원하는 컴포넌트 추가)
 
 ## 7.recharts 
 
@@ -159,6 +165,9 @@ api의 createdAt과 같은 "UTC 기준의" 스트링을 **10시간 전** 과 같
 > Mock Service Worker
 
     1. `npx msw init ./src --save` (mockServiceWorker.js 생성을 위함)
-    2. Handlers 생성 (request를 처리하는 함수, 호출된 URL를 확인, 모의 응답을 반환)  
-    3. 공식문서 JSON response 코드 부분 복붙.
-    4. mocks/handler.ts 만들기 
+    2. Handlers 생성 (request를 처리하는 함수, 호출된 URL를 확인, 모의 응답을 반환) msw2.0 부터 client단에서 작업하는 setupWorker, node단에서 작업하는 setupServer가 나뉘어 있음
+    3. 공식문서 JSON response 코드 부분 복붙.(참고용, 직접 get,post,update만들기)
+
+
+> `* 참고 https://velog.io/@navyjeongs/MSW-%EB%B0%B1%EC%97%94%EB%93%9C%EA%B0%80-api%EB%A5%BC-%EB%A7%8C%EB%93%A4%EC%96%B4%EC%A3%BC%EC%A7%80-%EC%95%8A%EC%95%84%EC%9A%94...
+-%EA%B7%B8%EB%9F%B0-%EB%8B%B9%EC%8B%A0%EC%9D%84-%EC%9C%84%ED%95%9C-MSW` 

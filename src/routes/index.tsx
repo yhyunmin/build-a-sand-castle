@@ -11,21 +11,21 @@ function HomeComponent() {
   return (
     <main>
       <h2>Welcome</h2>
-      <Link to={'/about'}>Go to About</Link>
-      <Link to={'/posts'}>Go to Post</Link>
+      <Link to={'/about/'}>Go to About</Link>
+      <Link to={'/posts/'}>Go to Post</Link>
       <Link style={{ marginLeft: '10px' }} to={'/settings'}>
         Go to Settings
       </Link>
       <Link
         style={{ marginLeft: '10px' }}
-        to={'/blog/$blogId'}
+        to={'/blog/$blogId/'}
         params={{
-          blogId: 3,
+          blogId: '3',
         }}
       >
         Go to Blog 3
       </Link>
-      <Link to={'lazy-loading'}>go to lazy-loading</Link>
+      <Link to={'/lazy-loading/'}>go to lazy-loading</Link>
     </main>
   );
 }

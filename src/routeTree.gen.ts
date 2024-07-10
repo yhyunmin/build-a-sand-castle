@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as ShadcnImport } from './routes/shadcn'
 import { Route as SettingsImport } from './routes/settings'
 import { Route as SearchImport } from './routes/search'
 import { Route as ProfileImport } from './routes/profile'
@@ -40,6 +41,7 @@ import { Route as WatcheslayoutWatchesImport } from './routes/_watcheslayout.wat
 import { Route as LayoutDogsImport } from './routes/_layout.dogs'
 import { Route as AuthenticatedSettingsImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedDashboardImport } from './routes/_authenticated/dashboard'
+import { Route as hiddenFolderVisibleLayoutImport } from './routes/(hidden-folder)/visibleLayout'
 import { Route as TabsMainIndexImport } from './routes/tabs/main/index'
 import { Route as FormListIndexImport } from './routes/form/list/index'
 import { Route as FormEditIndexImport } from './routes/form/edit/index'
@@ -47,12 +49,22 @@ import { Route as BlogBlogIdIndexImport } from './routes/blog/$blogId/index'
 import { Route as AboutSettingsIndexImport } from './routes/about/settings/index'
 import { Route as FormListIdImport } from './routes/form/list/$id'
 import { Route as FormEditIdImport } from './routes/form/edit/$id'
+import { Route as ABCDImport } from './routes/a.b.c.d'
+import { Route as hiddenFolderLayoutsVisibleLayoutFooImport } from './routes/(hidden-folder)/layouts/visibleLayout/foo'
+import { Route as hiddenFolderLayoutsVisibleLayoutBarImport } from './routes/(hidden-folder)/layouts/visibleLayout/bar'
+import { Route as hiddenFolderLayoutsHiddenLayoutFooImport } from './routes/(hidden-folder)/layouts/_hiddenLayout/foo'
+import { Route as hiddenFolderLayoutsHiddenLayoutBarImport } from './routes/(hidden-folder)/layouts/_hiddenLayout/bar'
 
 // Create Virtual Routes
 
 const AboutIndexLazyImport = createFileRoute('/about/')()
 
 // Create/Update Routes
+
+const ShadcnRoute = ShadcnImport.update({
+  path: '/shadcn',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const SettingsRoute = SettingsImport.update({
   path: '/settings',
@@ -194,6 +206,11 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardImport.update({
   getParentRoute: () => AuthenticatedRoute,
 } as any)
 
+const hiddenFolderVisibleLayoutRoute = hiddenFolderVisibleLayoutImport.update({
+  path: '/visibleLayout',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const TabsMainIndexRoute = TabsMainIndexImport.update({
   path: '/tabs/main/',
   getParentRoute: () => rootRoute,
@@ -228,6 +245,35 @@ const FormEditIdRoute = FormEditIdImport.update({
   path: '/edit/$id',
   getParentRoute: () => FormRoute,
 } as any)
+
+const ABCDRoute = ABCDImport.update({
+  path: '/a/b/c/d',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const hiddenFolderLayoutsVisibleLayoutFooRoute =
+  hiddenFolderLayoutsVisibleLayoutFooImport.update({
+    path: '/layouts/visibleLayout/foo',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const hiddenFolderLayoutsVisibleLayoutBarRoute =
+  hiddenFolderLayoutsVisibleLayoutBarImport.update({
+    path: '/layouts/visibleLayout/bar',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const hiddenFolderLayoutsHiddenLayoutFooRoute =
+  hiddenFolderLayoutsHiddenLayoutFooImport.update({
+    path: '/layouts/foo',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const hiddenFolderLayoutsHiddenLayoutBarRoute =
+  hiddenFolderLayoutsHiddenLayoutBarImport.update({
+    path: '/layouts/bar',
+    getParentRoute: () => rootRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -310,6 +356,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SettingsImport
       parentRoute: typeof rootRoute
     }
+    '/shadcn': {
+      id: '/shadcn'
+      path: '/shadcn'
+      fullPath: '/shadcn'
+      preLoaderRoute: typeof ShadcnImport
+      parentRoute: typeof rootRoute
+    }
+    '/(hidden-folder)/visibleLayout': {
+      id: '/visibleLayout'
+      path: '/visibleLayout'
+      fullPath: '/visibleLayout'
+      preLoaderRoute: typeof hiddenFolderVisibleLayoutImport
+      parentRoute: typeof rootRoute
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -375,8 +435,8 @@ declare module '@tanstack/react-router' {
     }
     '/dayjs/': {
       id: '/dayjs/'
-      path: '/dayjs/'
-      fullPath: '/dayjs/'
+      path: '/dayjs'
+      fullPath: '/dayjs'
       preLoaderRoute: typeof DayjsIndexImport
       parentRoute: typeof rootRoute
     }
@@ -389,43 +449,43 @@ declare module '@tanstack/react-router' {
     }
     '/lazy-loading/': {
       id: '/lazy-loading/'
-      path: '/lazy-loading/'
-      fullPath: '/lazy-loading/'
+      path: '/lazy-loading'
+      fullPath: '/lazy-loading'
       preLoaderRoute: typeof LazyLoadingIndexImport
       parentRoute: typeof rootRoute
     }
     '/pokemon/': {
       id: '/pokemon/'
-      path: '/pokemon/'
-      fullPath: '/pokemon/'
+      path: '/pokemon'
+      fullPath: '/pokemon'
       preLoaderRoute: typeof PokemonIndexImport
       parentRoute: typeof rootRoute
     }
     '/posts/': {
       id: '/posts/'
-      path: '/posts/'
-      fullPath: '/posts/'
+      path: '/posts'
+      fullPath: '/posts'
       preLoaderRoute: typeof PostsIndexImport
       parentRoute: typeof rootRoute
     }
     '/tabs/': {
       id: '/tabs/'
-      path: '/tabs/'
-      fullPath: '/tabs/'
+      path: '/tabs'
+      fullPath: '/tabs'
       preLoaderRoute: typeof TabsIndexImport
       parentRoute: typeof rootRoute
     }
     '/tanstack-query/': {
       id: '/tanstack-query/'
-      path: '/tanstack-query/'
-      fullPath: '/tanstack-query/'
+      path: '/tanstack-query'
+      fullPath: '/tanstack-query'
       preLoaderRoute: typeof TanstackQueryIndexImport
       parentRoute: typeof rootRoute
     }
     '/about/': {
       id: '/about/'
-      path: '/about/'
-      fullPath: '/about/'
+      path: '/about'
+      fullPath: '/about'
       preLoaderRoute: typeof AboutIndexLazyImport
       parentRoute: typeof rootRoute
     }
@@ -445,37 +505,72 @@ declare module '@tanstack/react-router' {
     }
     '/about/settings/': {
       id: '/about/settings/'
-      path: '/about/settings/'
-      fullPath: '/about/settings/'
+      path: '/about/settings'
+      fullPath: '/about/settings'
       preLoaderRoute: typeof AboutSettingsIndexImport
       parentRoute: typeof rootRoute
     }
     '/blog/$blogId/': {
       id: '/blog/$blogId/'
-      path: '/blog/$blogId/'
-      fullPath: '/blog/$blogId/'
+      path: '/blog/$blogId'
+      fullPath: '/blog/$blogId'
       preLoaderRoute: typeof BlogBlogIdIndexImport
       parentRoute: typeof rootRoute
     }
     '/form/edit/': {
       id: '/form/edit/'
-      path: '/edit/'
-      fullPath: '/form/edit/'
+      path: '/edit'
+      fullPath: '/form/edit'
       preLoaderRoute: typeof FormEditIndexImport
       parentRoute: typeof FormImport
     }
     '/form/list/': {
       id: '/form/list/'
-      path: '/list/'
-      fullPath: '/form/list/'
+      path: '/list'
+      fullPath: '/form/list'
       preLoaderRoute: typeof FormListIndexImport
       parentRoute: typeof FormImport
     }
     '/tabs/main/': {
       id: '/tabs/main/'
-      path: '/tabs/main/'
-      fullPath: '/tabs/main/'
+      path: '/tabs/main'
+      fullPath: '/tabs/main'
       preLoaderRoute: typeof TabsMainIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/(hidden-folder)/layouts/_hiddenLayout/bar': {
+      id: '/layouts/_hiddenLayout/bar'
+      path: '/layouts/bar'
+      fullPath: '/layouts/bar'
+      preLoaderRoute: typeof hiddenFolderLayoutsHiddenLayoutBarImport
+      parentRoute: typeof rootRoute
+    }
+    '/(hidden-folder)/layouts/_hiddenLayout/foo': {
+      id: '/layouts/_hiddenLayout/foo'
+      path: '/layouts/foo'
+      fullPath: '/layouts/foo'
+      preLoaderRoute: typeof hiddenFolderLayoutsHiddenLayoutFooImport
+      parentRoute: typeof rootRoute
+    }
+    '/(hidden-folder)/layouts/visibleLayout/bar': {
+      id: '/layouts/visibleLayout/bar'
+      path: '/layouts/visibleLayout/bar'
+      fullPath: '/layouts/visibleLayout/bar'
+      preLoaderRoute: typeof hiddenFolderLayoutsVisibleLayoutBarImport
+      parentRoute: typeof rootRoute
+    }
+    '/(hidden-folder)/layouts/visibleLayout/foo': {
+      id: '/layouts/visibleLayout/foo'
+      path: '/layouts/visibleLayout/foo'
+      fullPath: '/layouts/visibleLayout/foo'
+      preLoaderRoute: typeof hiddenFolderLayoutsVisibleLayoutFooImport
+      parentRoute: typeof rootRoute
+    }
+    '/a/b/c/d': {
+      id: '/a/b/c/d'
+      path: '/a/b/c/d'
+      fullPath: '/a/b/c/d'
+      preLoaderRoute: typeof ABCDImport
       parentRoute: typeof rootRoute
     }
   }
@@ -504,6 +599,8 @@ export const routeTree = rootRoute.addChildren({
   ProfileRoute,
   SearchRoute,
   SettingsRoute,
+  ShadcnRoute,
+  hiddenFolderVisibleLayoutRoute,
   WatcheslayoutWatchesRoute,
   PokemonIdRoute,
   PostsPostIdRoute,
@@ -518,6 +615,209 @@ export const routeTree = rootRoute.addChildren({
   AboutSettingsIndexRoute,
   BlogBlogIdIndexRoute,
   TabsMainIndexRoute,
+  hiddenFolderLayoutsHiddenLayoutBarRoute,
+  hiddenFolderLayoutsHiddenLayoutFooRoute,
+  hiddenFolderLayoutsVisibleLayoutBarRoute,
+  hiddenFolderLayoutsVisibleLayoutFooRoute,
+  ABCDRoute,
 })
 
 /* prettier-ignore-end */
+
+/* ROUTE_MANIFEST_START
+{
+  "routes": {
+    "__root__": {
+      "filePath": "__root.tsx",
+      "children": [
+        "/",
+        "/_authenticated",
+        "/_layout",
+        "/_wathceslayout",
+        "/_wrapper",
+        "/ag-grid",
+        "/form",
+        "/login",
+        "/profile",
+        "/search",
+        "/settings",
+        "/shadcn",
+        "/visibleLayout",
+        "/_watcheslayout/watches",
+        "/pokemon/$id",
+        "/posts/$postId",
+        "/posts/deep",
+        "/dayjs/",
+        "/lazy-loading/",
+        "/pokemon/",
+        "/posts/",
+        "/tabs/",
+        "/tanstack-query/",
+        "/about/",
+        "/about/settings/",
+        "/blog/$blogId/",
+        "/tabs/main/",
+        "/layouts/_hiddenLayout/bar",
+        "/layouts/_hiddenLayout/foo",
+        "/layouts/visibleLayout/bar",
+        "/layouts/visibleLayout/foo",
+        "/a/b/c/d"
+      ]
+    },
+    "/": {
+      "filePath": "index.tsx"
+    },
+    "/_authenticated": {
+      "filePath": "_authenticated.tsx",
+      "children": [
+        "/_authenticated/dashboard",
+        "/_authenticated/settings"
+      ]
+    },
+    "/_layout": {
+      "filePath": "_layout.tsx",
+      "children": [
+        "/_layout/dogs"
+      ]
+    },
+    "/_wathceslayout": {
+      "filePath": "_wathceslayout.tsx"
+    },
+    "/_wrapper": {
+      "filePath": "_wrapper.tsx",
+      "children": [
+        "/_wrapper/rolex"
+      ]
+    },
+    "/ag-grid": {
+      "filePath": "ag-grid.tsx"
+    },
+    "/form": {
+      "filePath": "form.tsx",
+      "children": [
+        "/form/build",
+        "/form/",
+        "/form/edit/$id",
+        "/form/list/$id",
+        "/form/edit/",
+        "/form/list/"
+      ]
+    },
+    "/login": {
+      "filePath": "login.tsx"
+    },
+    "/profile": {
+      "filePath": "profile.tsx"
+    },
+    "/search": {
+      "filePath": "search.tsx"
+    },
+    "/settings": {
+      "filePath": "settings.tsx"
+    },
+    "/shadcn": {
+      "filePath": "shadcn.tsx"
+    },
+    "/visibleLayout": {
+      "filePath": "(hidden-folder)/visibleLayout.tsx"
+    },
+    "/_authenticated/dashboard": {
+      "filePath": "_authenticated/dashboard.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/settings": {
+      "filePath": "_authenticated/settings.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_layout/dogs": {
+      "filePath": "_layout.dogs.tsx",
+      "parent": "/_layout"
+    },
+    "/_watcheslayout/watches": {
+      "filePath": "_watcheslayout.watches.tsx"
+    },
+    "/_wrapper/rolex": {
+      "filePath": "_wrapper.rolex.tsx",
+      "parent": "/_wrapper"
+    },
+    "/form/build": {
+      "filePath": "form/build.tsx",
+      "parent": "/form"
+    },
+    "/pokemon/$id": {
+      "filePath": "pokemon/$id.tsx"
+    },
+    "/posts/$postId": {
+      "filePath": "posts.$postId.tsx"
+    },
+    "/posts/deep": {
+      "filePath": "posts_.deep.tsx"
+    },
+    "/dayjs/": {
+      "filePath": "dayjs/index.tsx"
+    },
+    "/form/": {
+      "filePath": "form/index.tsx",
+      "parent": "/form"
+    },
+    "/lazy-loading/": {
+      "filePath": "lazy-loading/index.tsx"
+    },
+    "/pokemon/": {
+      "filePath": "pokemon/index.tsx"
+    },
+    "/posts/": {
+      "filePath": "posts.index.tsx"
+    },
+    "/tabs/": {
+      "filePath": "tabs/index.tsx"
+    },
+    "/tanstack-query/": {
+      "filePath": "tanstack-query/index.tsx"
+    },
+    "/about/": {
+      "filePath": "about/index.lazy.tsx"
+    },
+    "/form/edit/$id": {
+      "filePath": "form/edit/$id.tsx",
+      "parent": "/form"
+    },
+    "/form/list/$id": {
+      "filePath": "form/list/$id.tsx",
+      "parent": "/form"
+    },
+    "/about/settings/": {
+      "filePath": "about/settings/index.tsx"
+    },
+    "/blog/$blogId/": {
+      "filePath": "blog/$blogId/index.tsx"
+    },
+    "/form/edit/": {
+      "filePath": "form/edit/index.tsx",
+      "parent": "/form"
+    },
+    "/form/list/": {
+      "filePath": "form/list/index.tsx",
+      "parent": "/form"
+    },
+    "/tabs/main/": {
+      "filePath": "tabs/main/index.tsx"
+    },
+    "/layouts/_hiddenLayout/bar": {
+      "filePath": "(hidden-folder)/layouts/_hiddenLayout/bar.tsx"
+    },
+    "/layouts/_hiddenLayout/foo": {
+      "filePath": "(hidden-folder)/layouts/_hiddenLayout/foo.tsx"
+    },
+    "/layouts/visibleLayout/bar": {
+      "filePath": "(hidden-folder)/layouts/visibleLayout/bar.tsx"
+    },
+    "/layouts/visibleLayout/foo": {
+      "filePath": "(hidden-folder)/layouts/visibleLayout/foo.tsx"
+    },
+    "/a/b/c/d": {
+      "filePath": "a.b.c.d.tsx"
+    }
+  }
+}
+ROUTE_MANIFEST_END */
